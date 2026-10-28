@@ -1,0 +1,692 @@
+[gd_scene load_steps=35 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_scr"]
+[ext_resource type="Script" path="res://scripts/ui/virtual_joystick.gd" id="2_scr"]
+[ext_resource type="Script" path="res://scripts/ui/touch_button.gd" id="3_scr"]
+[ext_resource type="Theme" path="res://assets/ui/game_theme.tres" id="4_the"]
+[ext_resource type="Texture2D" path="res://assets/ui/crosshair/crosshair_player.png" id="5_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/grey_button00.png" id="6_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/grey_button01.png" id="7_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/hud/joystick_circle_pad_a.png" id="8_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/hud/joystick_circle_nub_a.png" id="9_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/hud/button_circle.png" id="10_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/hud/icon_fire.png" id="11_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/hud/icon_hand.png" id="12_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/hud/icon_target.png" id="13_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/green_button00.png" id="14_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/green_button01.png" id="15_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/red_button00.png" id="16_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/red_button01.png" id="17_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/blue_button00.png" id="18_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/blue_button01.png" id="19_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/yellow_button00.png" id="20_tex"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/yellow_button01.png" id="21_tex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(0.04, 0.07, 0.14, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.8, 1, 0.9)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 26
+content_margin_top = 26
+content_margin_right = 26
+content_margin_bottom = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
+bg_color = Color(0, 0, 0, 0.55)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3"]
+bg_color = Color(0.25, 0.9, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4"]
+texture = ExtResource("6_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5"]
+texture = ExtResource("7_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6"]
+texture = ExtResource("14_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7"]
+texture = ExtResource("15_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8"]
+texture = ExtResource("16_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_9"]
+texture = ExtResource("17_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_10"]
+texture = ExtResource("18_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11"]
+texture = ExtResource("19_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12"]
+texture = ExtResource("20_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_13"]
+texture = ExtResource("21_tex")
+texture_margin_left = 10
+texture_margin_top = 10
+texture_margin_right = 10
+texture_margin_bottom = 12
+content_margin_left = 16
+content_margin_right = 16
+
+[node name="Hud" type="CanvasLayer"]
+layer = 10
+process_mode = 3
+script = ExtResource("1_scr")
+
+[node name="UI" type="Control" parent="."]
+theme = ExtResource("4_the")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Markers" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DamageFlash" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+color = Color(1, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Crosshair" type="TextureRect" parent="UI"]
+texture = ExtResource("5_tex")
+expand_mode = 1
+modulate = Color(0.6, 1, 1, 0.9)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40
+offset_top = -40
+offset_right = 40
+offset_bottom = 40
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+unique_name_in_owner = true
+max_value = 100
+value = 100
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3")
+layout_mode = 0
+offset_left = 28
+offset_top = 26
+offset_right = 408
+offset_bottom = 60
+
+[node name="HealthLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+text = "HULL"
+theme_override_font_sizes/font_size = 20
+layout_mode = 0
+offset_left = 40
+offset_top = 28
+offset_right = 400
+offset_bottom = 58
+mouse_filter = 2
+
+[node name="KillsLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+text = "ENEMIES  0 / 0"
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -300
+offset_top = 20
+offset_right = 300
+offset_bottom = 60
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="TimeLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+horizontal_alignment = 2
+text = "00:00.0"
+theme_override_font_sizes/font_size = 28
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -330
+offset_top = 30
+offset_right = -120
+offset_bottom = 70
+grow_horizontal = 0
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="PauseButton" type="Button" parent="UI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 72)
+text = "II"
+theme_override_styles/normal = SubResource("StyleBoxTexture_4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 0
+anchor_right = 1
+anchor_bottom = 0
+offset_left = -108
+offset_top = 20
+offset_right = -24
+offset_bottom = 92
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="Joystick" type="Control" parent="UI"]
+unique_name_in_owner = true
+script = ExtResource("2_scr")
+layout_mode = 1
+anchor_left = 0
+anchor_top = 1
+anchor_right = 0
+anchor_bottom = 1
+offset_left = 40
+offset_top = -330
+offset_right = 340
+offset_bottom = -30
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="Pad" type="TextureRect" parent="UI/Joystick"]
+texture = ExtResource("8_tex")
+expand_mode = 1
+stretch_mode = 0
+modulate = Color(1, 1, 1, 0.65)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Nub" type="TextureRect" parent="UI/Joystick"]
+texture = ExtResource("9_tex")
+expand_mode = 1
+stretch_mode = 0
+modulate = Color(1, 1, 1, 0.85)
+layout_mode = 0
+offset_left = 85
+offset_top = 85
+offset_right = 215
+offset_bottom = 215
+mouse_filter = 2
+
+[node name="FireButton" type="Control" parent="UI"]
+unique_name_in_owner = true
+script = ExtResource("3_scr")
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -300
+offset_top = -280
+offset_right = -60
+offset_bottom = -40
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Background" type="TextureRect" parent="UI/FireButton"]
+texture = ExtResource("10_tex")
+expand_mode = 1
+stretch_mode = 0
+modulate = Color(1, 0.35, 0.3, 0.7)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="UI/FireButton"]
+texture = ExtResource("11_tex")
+expand_mode = 1
+stretch_mode = 5
+layout_mode = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = 60
+offset_top = 60
+offset_right = -60
+offset_bottom = -60
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SteerHint" type="HBoxContainer" parent="UI"]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 1
+anchor_left = 0
+anchor_top = 1
+anchor_right = 0
+anchor_bottom = 1
+offset_left = 60
+offset_top = -360
+offset_right = 340
+offset_bottom = -304
+grow_horizontal = 1
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="UI/SteerHint"]
+texture = ExtResource("12_tex")
+expand_mode = 1
+layout_mode = 2
+custom_minimum_size = Vector2(48, 48)
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="UI/SteerHint"]
+text = "DRAG TO STEER"
+theme_override_font_sizes/font_size = 20
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FireHint" type="HBoxContainer" parent="UI"]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 1
+anchor_left = 1
+anchor_top = 1
+anchor_right = 1
+anchor_bottom = 1
+offset_left = -330
+offset_top = -310
+offset_right = -50
+offset_bottom = -254
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="UI/FireHint"]
+texture = ExtResource("13_tex")
+expand_mode = 1
+layout_mode = 2
+custom_minimum_size = Vector2(48, 48)
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="UI/FireHint"]
+text = "HOLD TO FIRE"
+theme_override_font_sizes/font_size = 20
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MessageLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+horizontal_alignment = 1
+modulate = Color(1, 1, 1, 0)
+text = ""
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(0.5, 1, 0.9, 1)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -520
+offset_top = 90
+offset_right = 520
+offset_bottom = 130
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="WarningLabel" type="Label" parent="UI"]
+unique_name_in_owner = true
+visible = false
+horizontal_alignment = 1
+text = "WARNING: RETURN TO THE COMBAT ZONE"
+theme_override_font_sizes/font_size = 30
+theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0
+anchor_right = 0.5
+anchor_bottom = 0
+offset_left = -520
+offset_top = 150
+offset_right = 520
+offset_bottom = 190
+grow_horizontal = 2
+grow_vertical = 1
+mouse_filter = 2
+
+[node name="Loading" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+color = Color(0, 0, 0, 0.75)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Loading"]
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "PREPARING FLIGHT NAVIGATION..."
+theme_override_font_sizes/font_size = 32
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameOverPanel" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="UI/GameOverPanel"]
+color = Color(0, 0, 0, 0.55)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="UI/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/GameOverPanel/Center"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+layout_mode = 2
+
+[node name="Box" type="VBoxContainer" parent="UI/GameOverPanel/Center/Panel"]
+alignment = 1
+theme_override_constants/separation = 18
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/GameOverPanel/Center/Panel/Box"]
+horizontal_alignment = 1
+text = "GAME OVER"
+theme_override_font_sizes/font_size = 46
+theme_override_colors/font_color = Color(1, 0.3, 0.25, 1)
+layout_mode = 2
+
+[node name="Message" type="Label" parent="UI/GameOverPanel/Center/Panel/Box"]
+unique_name_in_owner = false
+text = "Your ship was destroyed."
+theme_override_font_sizes/font_size = 26
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="UI/GameOverPanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "CONTINUE"
+theme_override_styles/normal = SubResource("StyleBoxTexture_6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="UI/GameOverPanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "QUIT"
+theme_override_styles/normal = SubResource("StyleBoxTexture_8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_9")
+layout_mode = 2
+
+[node name="CompletePanel" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="UI/CompletePanel"]
+color = Color(0, 0, 0, 0.55)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="UI/CompletePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/CompletePanel/Center"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+layout_mode = 2
+
+[node name="Box" type="VBoxContainer" parent="UI/CompletePanel/Center/Panel"]
+alignment = 1
+theme_override_constants/separation = 18
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/CompletePanel/Center/Panel/Box"]
+horizontal_alignment = 1
+text = "MISSION COMPLETE"
+theme_override_font_sizes/font_size = 46
+theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
+layout_mode = 2
+
+[node name="CompleteTime" type="Label" parent="UI/CompletePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+text = "Total time: 00:00.0"
+theme_override_font_sizes/font_size = 34
+layout_mode = 2
+
+[node name="CompleteKills" type="Label" parent="UI/CompletePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+text = "Enemies destroyed: 0"
+theme_override_font_sizes/font_size = 26
+layout_mode = 2
+
+[node name="ReplayButton" type="Button" parent="UI/CompletePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "REPLAY LEVEL"
+theme_override_styles/normal = SubResource("StyleBoxTexture_6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="UI/CompletePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "MAIN MENU"
+theme_override_styles/normal = SubResource("StyleBoxTexture_10")
+theme_override_styles/hover = SubResource("StyleBoxTexture_10")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_11")
+layout_mode = 2
+
+[node name="PausePanel" type="Control" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="UI/PausePanel"]
+color = Color(0, 0, 0, 0.55)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="CenterContainer" parent="UI/PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1
+anchor_bottom = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/PausePanel/Center"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+layout_mode = 2
+
+[node name="Box" type="VBoxContainer" parent="UI/PausePanel/Center/Panel"]
+alignment = 1
+theme_override_constants/separation = 18
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/PausePanel/Center/Panel/Box"]
+horizontal_alignment = 1
+text = "PAUSED"
+theme_override_font_sizes/font_size = 46
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="UI/PausePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "RESUME"
+theme_override_styles/normal = SubResource("StyleBoxTexture_6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="UI/PausePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "RESTART"
+theme_override_styles/normal = SubResource("StyleBoxTexture_12")
+theme_override_styles/hover = SubResource("StyleBoxTexture_12")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_13")
+layout_mode = 2
+
+[node name="QuitMenuButton" type="Button" parent="UI/PausePanel/Center/Panel/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 74)
+text = "QUIT TO MENU"
+theme_override_styles/normal = SubResource("StyleBoxTexture_8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_9")
+layout_mode = 2

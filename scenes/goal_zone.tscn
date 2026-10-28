@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/levels/goal_zone.gd" id="1_scr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2"]
+transparency = 1
+shading_mode = 0
+cull_mode = 2
+albedo_color = Color(0.4, 0.4, 0.45, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3"]
+transparency = 1
+shading_mode = 0
+cull_mode = 2
+albedo_color = Color(0.4, 0.4, 0.45, 0.12)
+
+[sub_resource type="TorusMesh" id="TorusMesh_4"]
+inner_radius = 28.8
+outer_radius = 32
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5"]
+top_radius = 3
+bottom_radius = 3
+height = 260
+
+[node name="GoalZone" type="Area3D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_scr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1")
+
+[node name="Ring" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2")
+mesh = SubResource("TorusMesh_4")
+
+[node name="Beam" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 130, 0)
+material_override = SubResource("StandardMaterial3D_3")
+mesh = SubResource("CylinderMesh_5")

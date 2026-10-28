@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cto1pbayo8eyp"]
+
+[ext_resource type="Script" uid="uid://da5v2ywheypej" path="res://scripts/player/player_ship.gd" id="1_scr"]
+[ext_resource type="Script" uid="uid://c11dg6jarif6i" path="res://scripts/combat/health_component.gd" id="2_scr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 2.9
+
+[sub_resource type="Gradient" id="Gradient_2"]
+colors = PackedColorArray(0.3, 0.8, 1, 1, 0.3, 0.8, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3"]
+gradient = SubResource("Gradient_2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4"]
+direction = Vector3(0, 0, 1)
+spread = 6.0
+initial_velocity_min = 10.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_6"]
+material = SubResource("StandardMaterial3D_5")
+radius = 0.35
+height = 0.7
+radial_segments = 6
+rings = 3
+
+[sub_resource type="Gradient" id="Gradient_7"]
+colors = PackedColorArray(0.3, 0.8, 1, 1, 0.3, 0.8, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8"]
+gradient = SubResource("Gradient_7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_9"]
+direction = Vector3(0, 0, 1)
+spread = 6.0
+initial_velocity_min = 10.0
+initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_11"]
+material = SubResource("StandardMaterial3D_10")
+radius = 0.35
+height = 0.7
+radial_segments = 6
+rings = 3
+
+[node name="PlayerShip" type="CharacterBody3D" unique_id=2105346181]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_scr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=286654447]
+shape = SubResource("SphereShape3D_1")
+
+[node name="Model" type="Node3D" parent="." unique_id=904099887]
+
+[node name="Muzzles" type="Node3D" parent="." unique_id=1303413557]
+
+[node name="MuzzleLeft" type="Marker3D" parent="Muzzles" unique_id=1407960095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52, 0, -4.5)
+
+[node name="MuzzleRight" type="Marker3D" parent="Muzzles" unique_id=1556211140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52, 0, -4.5)
+
+[node name="ExhaustLeft" type="GPUParticles3D" parent="." unique_id=1740523432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62, 0, 4.05)
+amount = 30
+lifetime = 0.45
+visibility_aabb = AABB(-60, -60, -60, 120, 120, 120)
+process_material = SubResource("ParticleProcessMaterial_4")
+draw_pass_1 = SubResource("SphereMesh_6")
+
+[node name="ExhaustRight" type="GPUParticles3D" parent="." unique_id=1933904588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62, 0, 4.05)
+amount = 30
+lifetime = 0.45
+visibility_aabb = AABB(-60, -60, -60, 120, 120, 120)
+process_material = SubResource("ParticleProcessMaterial_9")
+draw_pass_1 = SubResource("SphereMesh_11")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=826445695]
+script = ExtResource("2_scr")
