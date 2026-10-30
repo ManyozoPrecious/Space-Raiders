@@ -1,8 +1,6 @@
 class_name LevelBase
 extends Node3D
-## Shared logic for every level: builds the player, camera, HUD, goal beacon,
-## flight navigation volume and enemies, and tracks kills, time and game flow.
-## Subclasses build the environment (see space_level.gd and planet_level.gd).
+ 
 
 const NAV_TIMEOUT := 25.0
 const NAV_LAYER_COUNT := 5
@@ -130,7 +128,7 @@ func _inside_obstacle(point: Vector3, margin: float) -> bool:
 	return false
 
 
-## Random point inside the playable volume (used for enemy wander targets).
+ 
 func random_point_in_bounds(random: RandomNumberGenerator) -> Vector3:
 	var flat := Vector2(random.randf_range(-1.0, 1.0), random.randf_range(-1.0, 1.0))
 	if flat.length() > 1.0:
@@ -143,8 +141,7 @@ func nav_center_xz() -> Vector3:
 	return Vector3(nav_center.x, 0.0, nav_center.z)
 
 
-## Adds a static obstacle built from an environment model. The model is scaled
-## so its longest side is [param size]; `shape` is "sphere", "cylinder" or "box".
+ 
 func add_obstacle(model_path: String, size: float, position: Vector3, rotation_euler := Vector3.ZERO, shape := "sphere") -> StaticBody3D:
 	var body := StaticBody3D.new()
 	body.collision_layer = 1
@@ -174,13 +171,13 @@ func add_obstacle(model_path: String, size: float, position: Vector3, rotation_e
 	return body
 
 
-## Marks a physics body so the flight navigation volume treats it as solid.
+ 
 func register_nav_target(body: Node) -> void:
 	if ResourceLoader.exists(VOXELIZATION_TARGET):
 		body.add_child(load(VOXELIZATION_TARGET).instantiate())
 
 
-# --- Flight navigation (RevolNoom/godot_flight_navigation_3d) ---------------
+#Flight navigation (RevolNoom/godot_flight_navigation_3d) 
 
 func _build_navigation() -> void:
 	var nav_scene = load("res://src/flight_navigation_3d.tscn")
@@ -212,7 +209,7 @@ func is_nav_ready() -> bool:
 	return _nav_built and flight_nav != null
 
 
-# --- Game flow --------------------------------------------------------------
+ 
 
 func _physics_process(delta: float) -> void:
 	if state != "playing":

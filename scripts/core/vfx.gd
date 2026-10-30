@@ -1,7 +1,6 @@
 class_name Vfx
 extends RefCounted
-## Particle effects built from code with Godot's GPUParticles3D system:
-## explosions, impact sparks and engine exhaust.
+ 
 
 
 static func _make_material(color: Color) -> StandardMaterial3D:
@@ -45,8 +44,7 @@ static func _make_particles(amount: int, lifetime: float, radius: float) -> GPUP
 	particles.draw_pass_1 = mesh
 	return particles
 
-
-## One-shot fireball. [param power] scales size and speed.
+ 
 static func explosion(parent: Node, position: Vector3, power := 1.0) -> void:
 	var particles := _make_particles(48, 1.0, 0.7)
 	var process := ParticleProcessMaterial.new()
@@ -73,7 +71,7 @@ static func explosion(parent: Node, position: Vector3, power := 1.0) -> void:
 	parent.get_tree().create_timer(2.0).timeout.connect(particles.queue_free)
 
 
-## Small burst used when a laser hits something.
+ 
 static func spark(parent: Node, position: Vector3, color := Color(0.6, 0.9, 1.0)) -> void:
 	var particles := _make_particles(12, 0.35, 0.25)
 	var process := ParticleProcessMaterial.new()
@@ -94,7 +92,7 @@ static func spark(parent: Node, position: Vector3, color := Color(0.6, 0.9, 1.0)
 	parent.get_tree().create_timer(1.0).timeout.connect(particles.queue_free)
 
 
-## Continuous exhaust that streams behind the ship (+Z is behind).
+ 
 static func engine_exhaust(color: Color, size := 1.0) -> GPUParticles3D:
 	var particles := _make_particles(30, 0.45, 0.35 * size)
 	var process := ParticleProcessMaterial.new()

@@ -1,8 +1,6 @@
 class_name PlayerShip
 extends CharacterBody3D
-## Player ship (scene: scenes/player_ship.tscn). Constant forward thrust,
-## steering with the virtual joystick and laser fire from the HUD fire button.
-## Keyboard (arrow keys + space) also works for testing on a PC.
+ 
 
 signal health_changed(current: int, maximum: int)
 signal died

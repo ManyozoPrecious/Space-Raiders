@@ -53,7 +53,7 @@ func play_sfx(key: String, volume_db := 0.0, pitch := 1.0) -> void:
 			return
 
 
-## Plays a sound at a position in the 3D world (volume falls with distance).
+ 
 func play_sfx_3d(key: String, position: Vector3, volume_db := 0.0) -> void:
 	var scene := get_tree().current_scene
 	if scene == null or not _streams.has(key):

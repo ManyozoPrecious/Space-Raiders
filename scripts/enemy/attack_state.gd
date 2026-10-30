@@ -1,7 +1,6 @@
 class_name AttackState
 extends EnemyState
-## Attacking: the player is in weapon range. Keeps a preferred distance,
-## strafes, faces the player and shoots lasers.
+ 
 
 var _strafe_direction := 1.0
 var _strafe_timer := 0.0

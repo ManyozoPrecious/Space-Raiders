@@ -1,6 +1,487 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=25 format=3]
 
-[ext_resource type="Script" path="res://scripts/levels/planet_level.gd" id="1_level"]
+[ext_resource type="Script" path="res://scripts/levels/planet_level.gd" id="1_scr"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_rock_large_1.tscn" id="2_pac"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_rock_large_3.tscn" id="3_pac"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_rock_large_2.tscn" id="4_pac"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_tree_floating_2.tscn" id="5_pac"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_tree_swirl_1.tscn" id="6_pac"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_tree_spiral_2.tscn" id="7_pac"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles/obstacle_tree_spikes_1.tscn" id="8_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Bush_1.gltf" id="9_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Grass_3.gltf" id="10_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Tree_Blob_1.gltf" id="11_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Plant_3.gltf" id="12_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Tree_Light_1.gltf" id="13_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Tree_Blob_2.gltf" id="14_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/GeodesicDome.gltf" id="15_pac"]
+[ext_resource type="PackedScene" path="res://assets/env/GLTF/Base_Large.gltf" id="16_pac"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.18, 0.4, 0.8, 1)
+sky_horizon_color = Color(0.8, 0.78, 0.9, 1)
+ground_horizon_color = Color(0.8, 0.78, 0.9, 1)
+ground_bottom_color = Color(0.3, 0.4, 0.4, 1)
+
+[sub_resource type="Sky" id="Sky_2"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_3"]
+background_mode = 2
+sky = SubResource("Sky_2")
+ambient_light_source = 3
+ambient_light_energy = 0.9
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.78, 0.76, 0.88, 1)
+fog_density = 0.0012
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4"]
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5"]
+noise = SubResource("FastNoiseLite_4")
+width = 512
+height = 512
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6"]
+albedo_color = Color(0.45, 0.8, 0.6, 1)
+albedo_texture = SubResource("NoiseTexture2D_5")
+roughness = 1
+uv1_scale = Vector3(40, 40, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7"]
+size = Vector2(3000, 3000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8"]
+size = Vector3(3000, 20, 3000)
 
 [node name="PlanetLevel" type="Node3D"]
-script = ExtResource("1_level")
+script = ExtResource("1_scr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.81915, 0.3838, -0.42625, 0, 0.74314, 0.66913, 0.57358, -0.54812, 0.60875, 0, 0, 0)
+light_color = Color(1, 0.93, 0.8, 1)
+light_energy = 1.5
+
+[node name="PlayerStart" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 70, 250)
+
+[node name="GoalPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -250)
+
+[node name="GroundMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_7")
+material_override = SubResource("StandardMaterial3D_6")
+
+[node name="Ground" type="StaticBody3D" parent="." groups=["obstacle"]]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_8")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+
+[node name="CanyonWalls" type="Node3D" parent="."]
+
+[node name="Wall01" parent="CanyonWalls" instance=ExtResource("2_pac")]
+transform = Transform3D(3.04175, 0, 8.14716, 0, 8.69646, 0, -8.14716, 0, 3.04175, -202.92484, 52.17877, 330)
+
+[node name="Wall02" parent="CanyonWalls" instance=ExtResource("3_pac")]
+transform = Transform3D(0.51029, 0, 6.64975, 0, 6.6693, 0, -6.64975, 0, 0.51029, -237.41739, 40.0158, 212.41352)
+
+[node name="Wall03" parent="CanyonWalls" instance=ExtResource("4_pac")]
+transform = Transform3D(8.0156, 0, 1.44317, 0, 8.14448, 0, -1.44317, 0, 8.0156, -185.13344, 48.86689, 110.17788)
+
+[node name="Wall04" parent="CanyonWalls" instance=ExtResource("3_pac")]
+transform = Transform3D(6.19009, 0, -0.08845, 0, 6.19072, 0, 0.08845, 0, 6.19009, -229.73454, 37.14432, -8.10915)
+
+[node name="Wall05" parent="CanyonWalls" instance=ExtResource("3_pac")]
+transform = Transform3D(1.22506, 0, -6.71513, 0, 6.82596, 0, 6.71513, 0, 1.22506, -191.45196, 40.95574, -103.65128)
+
+[node name="Wall06" parent="CanyonWalls" instance=ExtResource("2_pac")]
+transform = Transform3D(3.56522, 0, -5.21827, 0, 6.31991, 0, 5.21827, 0, 3.56522, -195.54284, 37.91943, -205.01001)
+
+[node name="Wall07" parent="CanyonWalls" instance=ExtResource("3_pac")]
+transform = Transform3D(8.07826, 0, 4.19947, 0, 9.10461, 0, -4.19947, 0, 8.07826, -217.74264, 54.62764, -312.89923)
+
+[node name="Wall08" parent="CanyonWalls" instance=ExtResource("3_pac")]
+transform = Transform3D(-4.48368, 0, 8.29398, 0, 9.42834, 0, -8.29398, 0, -4.48368, 225.68342, 56.57002, 330)
+
+[node name="Wall09" parent="CanyonWalls" instance=ExtResource("3_pac")]
+transform = Transform3D(7.6975, 0, -1.30629, 0, 7.80756, 0, 1.30629, 0, 7.6975, 230.5049, 46.84534, 246.48937)
+
+[node name="Wall10" parent="CanyonWalls" instance=ExtResource("2_pac")]
+transform = Transform3D(-4.7645, 0, 6.43677, 0, 8.00828, 0, -6.43677, 0, -4.7645, 235.58511, 48.04966, 155.61242)
+
+[node name="Wall11" parent="CanyonWalls" instance=ExtResource("4_pac")]
+transform = Transform3D(0.05859, 0, -8.81255, 0, 8.81275, 0, 8.81255, 0, 0.05859, 227.44743, 52.8765, 54.42351)
+
+[node name="Wall12" parent="CanyonWalls" instance=ExtResource("4_pac")]
+transform = Transform3D(-6.24143, 0, 4.37812, 0, 7.62387, 0, -4.37812, 0, -6.24143, 197.05376, 45.74324, -63.41116)
+
+[node name="Wall13" parent="CanyonWalls" instance=ExtResource("2_pac")]
+transform = Transform3D(8.25027, 0, 2.80922, 0, 8.71543, 0, -2.80922, 0, 8.25027, 185.70359, 52.29255, -148.94488)
+
+[node name="Wall14" parent="CanyonWalls" instance=ExtResource("4_pac")]
+transform = Transform3D(6.26026, 0, 5.72506, 0, 8.48335, 0, -5.72506, 0, 6.26026, 226.80866, 50.90008, -254.24372)
+
+[node name="Towers" type="Node3D" parent="."]
+
+[node name="Tower01" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(3.13645, 0, -6.39248, 0, 7.12047, 0, 6.39248, 0, 3.13645, 56.48206, 71.20474, -178.73668)
+
+[node name="Tower02" parent="Towers" instance=ExtResource("6_pac")]
+transform = Transform3D(3.39121, 0, -5.0922, 0, 6.11807, 0, 5.0922, 0, 3.39121, -105.77706, 61.18074, 1.8466)
+
+[node name="Tower03" parent="Towers" instance=ExtResource("6_pac")]
+transform = Transform3D(6.62112, 0, 2.72786, 0, 7.16104, 0, -2.72786, 0, 6.62112, 127.09896, 71.61039, 85.28888)
+
+[node name="Tower04" parent="Towers" instance=ExtResource("6_pac")]
+transform = Transform3D(-1.64419, 0, -5.17057, 0, 5.42569, 0, 5.17057, 0, -1.64419, 78.18857, 54.25693, 87.26976)
+
+[node name="Tower05" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(4.40232, 0, -0.7126, 0, 4.45962, 0, 0.7126, 0, 4.40232, 49.96715, 44.59624, -22.81934)
+
+[node name="Tower06" parent="Towers" instance=ExtResource("7_pac")]
+transform = Transform3D(0.53735, 0, -3.87537, 0, 3.91245, 0, 3.87537, 0, 0.53735, 106.56416, 39.12447, -109.03649)
+
+[node name="Tower07" parent="Towers" instance=ExtResource("7_pac")]
+transform = Transform3D(-1.84292, 0, -3.37324, 0, 3.84384, 0, 3.37324, 0, -1.84292, -100.72538, 38.43836, -190.4641)
+
+[node name="Tower08" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(-6.56422, 0, 0.43285, 0, 6.57848, 0, -0.43285, 0, -6.56422, 140.07836, 65.78476, 19.09187)
+
+[node name="Tower09" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(-1.27651, 0, 4.38937, 0, 4.57122, 0, -4.38937, 0, -1.27651, 101.76284, 45.71222, -160.83883)
+
+[node name="Tower10" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(4.15747, 0, 1.98034, 0, 4.60503, 0, -1.98034, 0, 4.15747, -13.8787, 46.05028, -128.13614)
+
+[node name="Tower11" parent="Towers" instance=ExtResource("6_pac")]
+transform = Transform3D(-3.56762, 0, -0.23334, 0, 3.57525, 0, 0.23334, 0, -3.56762, -107.60202, 35.75247, -165.82249)
+
+[node name="Tower12" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(-1.30995, 0, 6.07532, 0, 6.21494, 0, -6.07532, 0, -1.30995, 83.71567, 62.14941, -137.16764)
+
+[node name="Tower13" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(2.41582, 0, 6.57945, 0, 7.00895, 0, -6.57945, 0, 2.41582, 9.75873, 70.08947, 110.79944)
+
+[node name="Tower14" parent="Towers" instance=ExtResource("6_pac")]
+transform = Transform3D(4.27683, 0, -5.30364, 0, 6.81322, 0, 5.30364, 0, 4.27683, -21.56658, 68.13216, -104.60682)
+
+[node name="Tower15" parent="Towers" instance=ExtResource("8_pac")]
+transform = Transform3D(0.14622, 0, -4.79166, 0, 4.79389, 0, 4.79166, 0, 0.14622, 124.16356, 47.93895, 94.83047)
+
+[node name="Tower16" parent="Towers" instance=ExtResource("5_pac")]
+transform = Transform3D(-7.49641, 0, -0.20375, 0, 7.49917, 0, 0.20375, 0, -7.49641, -6.57822, 74.99174, 84.71274)
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="Decor01" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-3.52682, 0, -1.44422, 0, 3.81107, 0, 1.44422, 0, -3.52682, -63.15546, 2.96708, 147.91881)
+
+[node name="Decor02" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(4.23999, 0, 3.20912, 0, 5.31751, 0, -3.20912, 0, 4.23999, 220.93831, 4.13991, -135.42604)
+
+[node name="Decor03" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(-2.92235, 0, -1.82547, 0, 3.44564, 0, 1.82547, 0, -2.92235, -234.3583, 0, 246.24255)
+
+[node name="Decor04" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(3.88848, 0, -4.94702, 0, 6.29232, 0, 4.94702, 0, 3.88848, 40.76694, 0, 16.40102)
+
+[node name="Decor05" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-0.47732, 0, 3.60725, 0, 3.63869, 0, -3.60725, 0, -0.47732, 72.51857, 0.01954, 193.90435)
+
+[node name="Decor06" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-1.87468, 0, -1.85045, 0, 2.63412, 0, 1.85045, 0, -1.87468, -228.54655, 2.05078, 9.38739)
+
+[node name="Decor07" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-2.30053, 0, 2.79766, 0, 3.62207, 0, -2.79766, 0, -2.30053, 197.46446, 0.01945, -119.74509)
+
+[node name="Decor08" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(-0.06524, 0, -6.87106, 0, 6.87137, 0, 6.87106, 0, -0.06524, 180.95437, 0, -272.37933)
+
+[node name="Decor09" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(1.20023, 0, -2.5455, 0, 2.81427, 0, 2.5455, 0, 1.20023, 149.55284, 0.03485, 19.95158)
+
+[node name="Decor10" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(2.12842, 0, 0.52305, 0, 2.19175, 0, -0.52305, 0, 2.12842, -243.63791, 0.01177, 168.51903)
+
+[node name="Decor11" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-3.81897, 0, -4.23276, 0, 5.70095, 0, 4.23276, 0, -3.81897, 165.16015, 4.43843, 261.99274)
+
+[node name="Decor12" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(4.89747, 0, 1.42506, 0, 5.10059, 0, -1.42506, 0, 4.89747, 200.43943, 0.03624, -247.92378)
+
+[node name="Decor13" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(4.01927, 0, 8.31587, 0, 9.23625, 0, -8.31587, 0, 4.01927, -58.01272, 0, 129.93558)
+
+[node name="Decor14" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-1.64606, 0, 3.24786, 0, 3.64117, 0, -3.24786, 0, -1.64606, 35.25444, 0.02587, 144.6816)
+
+[node name="Decor15" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(-2.4588, 0, 2.12277, 0, 3.24836, 0, -2.12277, 0, -2.4588, 40.58876, 0.04022, 263.62385)
+
+[node name="Decor16" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(3.61399, 0, 2.50351, 0, 4.39642, 0, -2.50351, 0, 3.61399, 144.74578, 0.03124, -58.47976)
+
+[node name="Decor17" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(-3.81871, 0, -6.80696, 0, 7.80495, 0, 6.80696, 0, -3.81871, 256.83963, 0, -116.88783)
+
+[node name="Decor18" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(-2.90392, 0, 3.82651, 0, 4.80364, 0, -3.82651, 0, -2.90392, -36.21699, 0, 2.04994)
+
+[node name="Decor19" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(2.7302, 0, 4.19075, 0, 5.00164, 0, -4.19075, 0, 2.7302, -75.59676, 3.89399, -164.55223)
+
+[node name="Decor20" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-1.6625, 0, 4.86044, 0, 5.1369, 0, -4.86044, 0, -1.6625, 13.93788, 3.9993, -31.81329)
+
+[node name="Decor21" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-0.30377, 0, 1.64506, 0, 1.67287, 0, -1.64506, 0, -0.30377, -10.47715, 0.00898, 109.05809)
+
+[node name="Decor22" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-1.35825, 0, 0.61848, 0, 1.49243, 0, -0.61848, 0, -1.35825, 213.03095, 0.00801, 49.36473)
+
+[node name="Decor23" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(1.55074, 0, -4.57942, 0, 4.83486, 0, 4.57942, 0, 1.55074, 98.83281, 0.05987, 226.00568)
+
+[node name="Decor24" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-3.34254, 0, 3.0341, 0, 4.51424, 0, -3.0341, 0, -3.34254, -74.00772, 0.03207, -3.24977)
+
+[node name="Decor25" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(0.03193, 0, -2.92535, 0, 2.92553, 0, 2.92535, 0, 0.03193, 190.65439, 0.03623, -42.31881)
+
+[node name="Decor26" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-1.69256, 0, -0.11931, 0, 1.69676, 0, 0.11931, 0, -1.69256, -100.34946, 0.01206, -129.07006)
+
+[node name="Decor27" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-1.6841, 0, 3.03608, 0, 3.47188, 0, -3.03608, 0, -1.6841, -249.29775, 0.02467, -251.91405)
+
+[node name="Decor28" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(6.97261, 0, 5.77103, 0, 9.05108, 0, -5.77103, 0, 6.97261, -122.0587, 0, 299.2912)
+
+[node name="Decor29" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(1.00825, 0, 1.71722, 0, 1.99133, 0, -1.71722, 0, 1.00825, -28.19311, 0.01069, 244.82542)
+
+[node name="Decor30" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(3.16011, 0, -2.86456, 0, 4.26521, 0, 2.86456, 0, 3.16011, -81.38953, 3.32065, 268.65872)
+
+[node name="Decor31" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(3.56149, 0, 0.55051, 0, 3.60379, 0, -0.55051, 0, 3.56149, -170.14148, 0.01495, -44.25732)
+
+[node name="Decor32" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-0.77443, 0, -4.02126, 0, 4.09516, 0, 4.02126, 0, -0.77443, 70.77505, 0.0291, -163.04982)
+
+[node name="Decor33" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(4.30971, 0, -2.8451, 0, 5.16412, 0, 2.8451, 0, 4.30971, -204.7504, 0.06395, 298.95558)
+
+[node name="Decor34" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-0.221, 0, 1.24906, 0, 1.26846, 0, -1.24906, 0, -0.221, 117.33468, 0.00681, -8.05627)
+
+[node name="Decor35" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(-2.73461, 0, -1.60013, 0, 3.16837, 0, 1.60013, 0, -2.73461, 5.18682, 0.01315, 11.0456)
+
+[node name="Decor36" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(3.24901, 0, -1.00219, 0, 3.40006, 0, 1.00219, 0, 3.24901, 84.67171, 0.01826, 176.22833)
+
+[node name="Decor37" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(-0.65019, 0, 3.74264, 0, 3.7987, 0, -3.74264, 0, -0.65019, 170.83413, 0.01576, 176.26406)
+
+[node name="Decor38" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-3.56867, 0, -0.49551, 0, 3.60291, 0, 0.49551, 0, -3.56867, 125.82482, 0.01935, 21.099)
+
+[node name="Decor39" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(0.12141, 0, 3.97958, 0, 3.98143, 0, -3.97958, 0, 0.12141, 107.31855, 0.0493, -12.31997)
+
+[node name="Decor40" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(-4.16184, 0, -2.66616, 0, 4.94261, 0, 2.66616, 0, -4.16184, 120.5271, 0.0612, 135.0721)
+
+[node name="Decor41" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(-0.34567, 0, 1.59854, 0, 1.63549, 0, -1.59854, 0, -0.34567, -196.39621, 0.00679, -1.81892)
+
+[node name="Decor42" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-5.67857, 0, 0.84012, 0, 5.74038, 0, -0.84012, 0, -5.67857, 127.5896, 4.46913, -102.11397)
+
+[node name="Decor43" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(3.81275, 0, 0.64688, 0, 3.86724, 0, -0.64688, 0, 3.81275, 209.11457, 0.01605, -282.35792)
+
+[node name="Decor44" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(2.69041, 0, -3.74769, 0, 4.6134, 0, 3.74769, 0, 2.69041, 142.26843, 0.01914, 60.11659)
+
+[node name="Decor45" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-0.98497, 0, -1.93737, 0, 2.17338, 0, 1.93737, 0, -0.98497, 233.48935, 0.01167, 137.9894)
+
+[node name="Decor46" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-1.15067, 0, 3.20464, 0, 3.40496, 0, -3.20464, 0, -1.15067, -7.1174, 0.02419, 170.61882)
+
+[node name="Decor47" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-1.47167, 0, -0.77346, 0, 1.66254, 0, 0.77346, 0, -1.47167, 76.42433, 0.00893, -6.76595)
+
+[node name="Decor48" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(1.14484, 0, 2.75699, 0, 2.98524, 0, -2.75699, 0, 1.14484, -8.1497, 0.03697, -54.2892)
+
+[node name="Decor49" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(3.15538, 0, -0.75428, 0, 3.24428, 0, 0.75428, 0, 3.15538, -171.59133, 0.01742, 283.99337)
+
+[node name="Decor50" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-0.68496, 0, 3.61551, 0, 3.67982, 0, -3.61551, 0, -0.68496, -17.30712, 0.02614, -243.1529)
+
+[node name="Decor51" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-5.47874, 0, 1.09766, 0, 5.58761, 0, -1.09766, 0, -5.47874, -207.397, 0.0397, 275.39935)
+
+[node name="Decor52" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(1.98351, 0, 1.53725, 0, 2.50948, 0, -1.53725, 0, 1.98351, -19.98655, 1.95373, 224.82271)
+
+[node name="Decor53" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(2.02703, 0, -1.05889, 0, 2.28694, 0, 1.05889, 0, 2.02703, 215.10364, 0.01625, 152.12806)
+
+[node name="Decor54" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(-0.15647, 0, 3.28796, 0, 3.29168, 0, -3.28796, 0, -0.15647, -68.22039, 0, 203.05528)
+
+[node name="Decor55" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-0.42279, 0, -2.58763, 0, 2.62195, 0, 2.58763, 0, -0.42279, -30.16141, 2.0413, -52.38493)
+
+[node name="Decor56" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(0.00984, 0, -1.49436, 0, 1.4944, 0, 1.49436, 0, 0.00984, 28.94943, 0.00803, 241.15345)
+
+[node name="Decor57" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(1.17488, 0, -4.11963, 0, 4.28389, 0, 4.11963, 0, 1.17488, 109.34933, 0.01778, 102.54648)
+
+[node name="Decor58" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(0.65659, 0, 2.64351, 0, 2.72383, 0, -2.64351, 0, 0.65659, 106.00619, 0, 85.79075)
+
+[node name="Decor59" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(1.05958, 0, -1.81194, 0, 2.09901, 0, 1.81194, 0, 1.05958, 218.55979, 0.01127, 187.19615)
+
+[node name="Decor60" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(0.087, 0, 4.49151, 0, 4.49235, 0, -4.49151, 0, 0.087, 69.78182, 0.01864, -20.80161)
+
+[node name="Decor61" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(3.43074, 0, 0.56149, 0, 3.47638, 0, -0.56149, 0, 3.43074, -205.63986, 0.04305, 101.00301)
+
+[node name="Decor62" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-2.29593, 0, 0.75595, 0, 2.41718, 0, -0.75595, 0, -2.29593, -188.50485, 0.01298, -47.60053)
+
+[node name="Decor63" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(0.51864, 0, -3.42292, 0, 3.46199, 0, 3.42292, 0, 0.51864, 94.71658, 0.01437, 16.18084)
+
+[node name="Decor64" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(1.1955, 0, 7.88157, 0, 7.97173, 0, -7.88157, 0, 1.1955, -84.2873, 0, 141.33778)
+
+[node name="Decor65" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(5.779, 0, 0.91234, 0, 5.85057, 0, -0.91234, 0, 5.779, -62.24841, 0.07245, -60.78694)
+
+[node name="Decor66" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(1.90933, 0, 1.58663, 0, 2.48252, 0, -1.58663, 0, 1.90933, -154.32022, 0.01764, 240.99522)
+
+[node name="Decor67" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-2.46816, 0, 3.05811, 0, 3.92987, 0, -3.05811, 0, -2.46816, 195.42274, 0.02792, 182.64949)
+
+[node name="Decor68" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(2.77578, 0, 4.73102, 0, 5.48521, 0, -4.73102, 0, 2.77578, 6.59686, 0.03897, 289.52069)
+
+[node name="Decor69" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(4.19589, 0, 1.76072, 0, 4.55034, 0, -1.76072, 0, 4.19589, -188.57562, 0, -259.48177)
+
+[node name="Decor70" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-1.82573, 0, -0.2867, 0, 1.8481, 0, 0.2867, 0, -1.82573, -55.66503, 1.43882, -212.58021)
+
+[node name="Decor71" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(-5.7497, 0, 1.59223, 0, 5.96609, 0, -1.59223, 0, -5.7497, 168.59647, 0.07388, -55.07211)
+
+[node name="Decor72" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(3.70629, 0, 0.96344, 0, 3.82947, 0, -0.96344, 0, 3.70629, 185.28757, 2.9814, 229.94018)
+
+[node name="Decor73" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(1.07119, 0, -4.05534, 0, 4.19443, 0, 4.05534, 0, 1.07119, -99.28755, 0.0174, 17.24384)
+
+[node name="Decor74" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(1.35045, 0, 6.5845, 0, 6.72156, 0, -6.5845, 0, 1.35045, -210.96783, 5.23302, 157.68974)
+
+[node name="Decor75" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-0.89542, 0, 2.00435, 0, 2.19527, 0, -2.00435, 0, -0.89542, 217.74295, 0.01179, -129.69845)
+
+[node name="Decor76" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-0.94436, 0, 5.08539, 0, 5.17233, 0, -5.08539, 0, -0.94436, -245.06066, 4.02688, 114.28043)
+
+[node name="Decor77" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(1.5872, 0, 0.19366, 0, 1.59898, 0, -0.19366, 0, 1.5872, 226.29265, 0.00663, 75.04167)
+
+[node name="Decor78" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-1.79256, 0, 1.57591, 0, 2.38679, 0, -1.57591, 0, -1.79256, 99.27109, 0.01282, -94.1164)
+
+[node name="Decor79" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(0.55274, 0, -7.74731, 0, 7.767, 0, 7.74731, 0, 0.55274, -228.59804, 0, 144.68769)
+
+[node name="Decor80" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-3.47358, 0, -1.26873, 0, 3.69803, 0, 1.26873, 0, -3.47358, -136.75188, 2.87907, 84.40003)
+
+[node name="Decor81" parent="Decor" instance=ExtResource("14_pac")]
+transform = Transform3D(-1.85163, 0, 0.16821, 0, 1.85926, 0, -0.16821, 0, -1.85163, -253.15276, 0.00771, 226.1975)
+
+[node name="Decor82" parent="Decor" instance=ExtResource("10_pac")]
+transform = Transform3D(-3.84003, 0, -3.82718, 0, 5.42155, 0, 3.82718, 0, -3.84003, 234.01288, 0, -58.84373)
+
+[node name="Decor83" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(1.27641, 0, -1.3339, 0, 1.84621, 0, 1.3339, 0, 1.27641, 259.94498, 0.00991, 18.81186)
+
+[node name="Decor84" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(-2.54596, 0, 2.71696, 0, 3.72341, 0, -2.71696, 0, -2.54596, 211.57255, 2.89883, -150.3333)
+
+[node name="Decor85" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(0.27308, 0, -4.48343, 0, 4.49173, 0, 4.48343, 0, 0.27308, -80.90399, 0.03191, 146.23975)
+
+[node name="Decor86" parent="Decor" instance=ExtResource("13_pac")]
+transform = Transform3D(-1.83926, 0, -4.42277, 0, 4.78997, 0, 4.42277, 0, -1.83926, -245.84192, 0.03403, 250.1479)
+
+[node name="Decor87" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(2.77582, 0, -4.29813, 0, 5.11655, 0, 4.29813, 0, 2.77582, -161.6067, 0.06336, 59.7743)
+
+[node name="Decor88" parent="Decor" instance=ExtResource("11_pac")]
+transform = Transform3D(-1.88965, 0, 3.05777, 0, 3.59454, 0, -3.05777, 0, -1.88965, 143.59506, 0.0193, -123.24809)
+
+[node name="Decor89" parent="Decor" instance=ExtResource("12_pac")]
+transform = Transform3D(3.4257, 0, -0.62241, 0, 3.48179, 0, 0.62241, 0, 3.4257, 24.69806, 0.04311, -192.85661)
+
+[node name="Decor90" parent="Decor" instance=ExtResource("9_pac")]
+transform = Transform3D(5.23106, 0, 2.16396, 0, 5.66098, 0, -2.16396, 0, 5.23106, -76.32559, 4.40732, 236.8842)
+
+[node name="Outpost" type="Node3D" parent="."]
+
+[node name="GeodesicDome" parent="Outpost" instance=ExtResource("15_pac")]
+transform = Transform3D(4.6894, 0, 0, 0, 4.6894, 0, 0, 0, 4.6894, -30, 7.59859, -250)
+
+[node name="BaseLarge" parent="Outpost" instance=ExtResource("16_pac")]
+transform = Transform3D(4.22046, 0, 0, 0, 4.22046, 0, 0, 0, 4.22046, 30, 7.49202, -260)
+
+[node name="EnemySpawns" type="Node3D" parent="."]
+
+[node name="Spawn1" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136.14443, 142.34124, 76.37944)
+
+[node name="Spawn2" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164.55245, 157.37885, 11.10372)
+
+[node name="Spawn3" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.5437, 161.59191, -42.26769)
+
+[node name="Spawn4" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.92807, 161.43365, 78.96177)
+
+[node name="Spawn5" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.05392, 162.44467, -29.156)
+
+[node name="Spawn6" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -105.37182, 136.53164, -47.48695)
+
+[node name="Spawn7" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.12379, 151.00868, -34.83509)
+
+[node name="Spawn8" type="Marker3D" parent="EnemySpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -191.78354, 141.89982, 25.62886)

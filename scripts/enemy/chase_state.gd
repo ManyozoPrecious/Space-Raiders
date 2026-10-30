@@ -1,7 +1,6 @@
 class_name ChaseState
 extends EnemyState
-## Chasing: the player is close enough to be hunted. Pursues the player when
-## there is a clear line of sight, otherwise follows a navigation path.
+ 
 
 const REPATH_INTERVAL := 1.0
 

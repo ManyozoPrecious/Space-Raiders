@@ -1,6 +1,13 @@
 class_name GameVirtualJoystick
 extends Control
- 
+## On-screen joystick for touch steering. `output` is a Vector2 whose axes are
+## in the range -1..1. The Pad and Nub images are child nodes in the scene.
+## Supports multi-touch, so another finger can use the fire button at the same time.
+## (Named GameVirtualJoystick because newer Godot versions have a built-in
+## VirtualJoystick class.)
+
+## Emitted when a finger first touches the joystick.
+signal touched
 
 @export var radius := 100.0
 
@@ -21,6 +28,7 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed and _touch_index == -1:
 			_touch_index = event.index
+			touched.emit()
 			_update(event.position)
 		elif not event.pressed and event.index == _touch_index:
 			_release()

@@ -1,7 +1,6 @@
 class_name StateMachine
 extends Node
-## Generic finite state machine. State nodes (children that extend State) are
-## placed under this node in the scene; call register_children() then start().
+ 
 ## Pattern based on the GDQuest finite state machine tutorial:
 ## https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/
 

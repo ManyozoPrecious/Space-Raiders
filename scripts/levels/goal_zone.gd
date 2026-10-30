@@ -1,7 +1,6 @@
 class_name GoalZone
 extends Area3D
-## Beacon the player must fly into after destroying the required enemies
-## (scene: scenes/goal_zone.tscn). It is dim and inactive until set_active(true).
+ 
 
 signal reached
 

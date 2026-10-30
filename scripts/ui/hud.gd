@@ -1,6 +1,10 @@
 class_name Hud
 extends CanvasLayer
- 
+## In-game user interface (scene: scenes/hud.tscn): health bar, kill counter,
+## timer, virtual joystick, fire button, touch hint images, crosshair, enemy and
+## goal markers, and the pause / game over / level complete panels.
+## All controls are nodes in the scene; this script only updates them.
+
 signal restart_requested
 
 const SCENE_PATH := "res://scenes/hud.tscn"
@@ -36,6 +40,8 @@ var _message_tween: Tween
 @onready var _pause_panel: Control = %PausePanel
 @onready var _complete_time_label: Label = %CompleteTime
 @onready var _complete_kills_label: Label = %CompleteKills
+@onready var _steer_hint: Control = $UI/SteerHint
+@onready var _fire_hint: Control = $UI/FireHint
 
 
 static func create() -> Hud:
@@ -45,6 +51,9 @@ static func create() -> Hud:
 func _ready() -> void:
 	joystick = %Joystick
 	fire_button = %FireButton
+	# The touch hints disappear as soon as the player touches the control they describe.
+	joystick.touched.connect(_steer_hint.hide)
+	fire_button.pressed.connect(_fire_hint.hide)
 	%PauseButton.pressed.connect(_show_pause)
 	%ContinueButton.pressed.connect(func() -> void: restart_requested.emit())
 	%QuitButton.pressed.connect(func() -> void: GameState.go_to_menu())
@@ -104,7 +113,9 @@ func show_message(text: String, duration := 3.0) -> void:
 	_message_tween.tween_interval(duration)
 	_message_tween.tween_property(_message_label, "modulate:a", 0.0, 0.8)
 
- 
+
+## Adds a floating icon that follows [param node] on screen (or sticks to the
+## screen edge when the node is off screen). kind: fighter, gunship or goal.
 func add_marker(node: Node3D, kind: String) -> void:
 	var holder := Control.new()
 	holder.size = Vector2(64, 90)

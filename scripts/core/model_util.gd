@@ -1,12 +1,6 @@
 class_name ModelUtil
 extends RefCounted
-## Helpers to load 3D models whose import scale is unknown: every model is
-## measured and scaled so that its longest side equals a requested size.
-
-
-## Instantiates [param scene] inside a wrapper node, centred on the origin and
-## scaled so its longest side is [param target_size]. Optionally replaces the
-## materials with one textured with [param texture_path].
+ 
 static func instantiate_fitted(scene: PackedScene, target_size: float, texture_path := "", yaw_offset_deg := 0.0) -> Node3D:
 	var wrapper := Node3D.new()
 	var model: Node3D = scene.instantiate()
@@ -23,8 +17,7 @@ static func instantiate_fitted(scene: PackedScene, target_size: float, texture_p
 	return wrapper
 
 
-## Returns the combined AABB of all meshes below [param node], expressed in the
-## space of [param root] (works before the nodes are inside the scene tree).
+ 
 static func compute_aabb(node: Node3D, root: Node3D) -> AABB:
 	var result := AABB()
 	var has_any := false

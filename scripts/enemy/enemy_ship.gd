@@ -1,9 +1,6 @@
 class_name EnemyShip
 extends CharacterBody3D
-## Flying enemy (scenes: enemy_fighter.tscn, enemy_gunship.tscn). Decisions are
-## made by a finite state machine whose states are child nodes (Wander, Chase,
-## Attack). Movement uses steering behaviours: wander, pursue, path following
-## along FlightNavigation3D paths, and obstacle avoidance.
+ 
 
 signal died(enemy: EnemyShip)
 
@@ -53,7 +50,7 @@ const TYPES := {
 	},
 }
 
-## Which entry of TYPES this scene uses (set in the scene's Inspector).
+ 
 @export var type_key := "fighter"
 
 var config: Dictionary
@@ -109,7 +106,7 @@ func _physics_process(delta: float) -> void:
 		_has_los = has_target() and Steering.has_line_of_sight(self, player.global_position)
 
 
-# --- Queries used by the states -------------------------------------------
+ 
 
 func has_target() -> bool:
 	return player != null and is_instance_valid(player) and not player.is_dead
@@ -128,7 +125,7 @@ func is_facing(target: Vector3, max_angle_deg: float) -> bool:
 	return (-global_transform.basis.z).dot(to_target) > cos(deg_to_rad(max_angle_deg))
 
 
-# --- Navigation helpers ---------------------------------------------------
+ 
 
 ## Asks the FlightNavigation3D plugin for a path. Falls back to a straight
 ## line (single waypoint) when no navigation data is available.
@@ -155,9 +152,8 @@ func path_finished() -> bool:
 	return path_index >= path.size() - 1 and global_position.distance_to(last) < level.nav_reach_radius * 1.5
 
 
-# --- Movement -------------------------------------------------------------
-
-## Applies a desired velocity with acceleration limits and obstacle avoidance.
+ 
+ 
 func steer(desired_velocity: Vector3, delta: float, look_target := Vector3.INF) -> void:
 	var forward := velocity.normalized() if velocity.length() > 2.0 else -global_transform.basis.z
 	var avoid := Steering.avoid_obstacles(self, forward, 45.0)
@@ -181,8 +177,7 @@ func _face_direction(direction: Vector3, delta: float) -> void:
 	global_transform.basis = global_transform.basis.slerp(target_basis, blend).orthonormalized()
 
 
-# --- Combat ---------------------------------------------------------------
-
+ 
 func fire_at_player() -> void:
 	if _fire_timer > 0.0 or not has_target():
 		return
@@ -207,7 +202,7 @@ func take_damage(amount: int) -> void:
 		return
 	AudioManager.play_sfx_3d("hit", global_position, -4.0)
 	_health.take_damage(amount)
-	# Getting shot makes a wandering enemy hunt the player.
+	 
 	if not is_dead and fsm.current_name == "Wander":
 		fsm.transition_to("Chase")
 

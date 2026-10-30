@@ -1,8 +1,6 @@
 class_name Projectile
 extends Area3D
-## Laser bolt (scene: scenes/projectile.tscn). Moves along its forward (-Z)
-## axis and damages the first body it touches. Shooting concept based on the
-## KidsCanCode 3D shooting recipe:
+ 
 ## https://kidscancode.org/godot_recipes/3.x/3d/3d_shooting/index.html
 
 const SCENE_PATH := "res://scenes/projectile.tscn"
@@ -22,7 +20,7 @@ var shooter: Node3D
 @onready var _light: OmniLight3D = $Light
 
 
-## Creates a bolt at [param position] flying along [param direction].
+ 
 static func spawn(parent: Node, position: Vector3, direction: Vector3, owner_is_player: bool, bolt_damage: int, bolt_speed: float, source: Node3D) -> void:
 	var bolt: Projectile = load(SCENE_PATH).instantiate()
 	bolt.from_player = owner_is_player

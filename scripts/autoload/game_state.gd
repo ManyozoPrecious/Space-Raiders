@@ -1,5 +1,5 @@
 extends Node
-## Global state shared by the menu and the levels: selected ship and level.
+ 
 
 const SHIPS := [
 	{

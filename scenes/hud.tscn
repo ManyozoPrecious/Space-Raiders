@@ -1,42 +1,26 @@
-[gd_scene load_steps=35 format=3]
+[gd_scene format=3 uid="uid://b058ce0bw7jpt"]
 
-[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_scr"]
-[ext_resource type="Script" path="res://scripts/ui/virtual_joystick.gd" id="2_scr"]
-[ext_resource type="Script" path="res://scripts/ui/touch_button.gd" id="3_scr"]
+[ext_resource type="Script" uid="uid://b873vaqrqeeve" path="res://scripts/ui/hud.gd" id="1_scr"]
+[ext_resource type="Script" uid="uid://dtkasd16oqr43" path="res://scripts/ui/virtual_joystick.gd" id="2_scr"]
+[ext_resource type="Script" uid="uid://dmsxpat4dm0qd" path="res://scripts/ui/touch_button.gd" id="3_scr"]
 [ext_resource type="Theme" path="res://assets/ui/game_theme.tres" id="4_the"]
-[ext_resource type="Texture2D" path="res://assets/ui/crosshair/crosshair_player.png" id="5_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/grey_button00.png" id="6_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/grey_button01.png" id="7_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/hud/joystick_circle_pad_a.png" id="8_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/hud/joystick_circle_nub_a.png" id="9_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/hud/button_circle.png" id="10_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/hud/icon_fire.png" id="11_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/hud/icon_hand.png" id="12_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/hud/icon_target.png" id="13_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/green_button00.png" id="14_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/green_button01.png" id="15_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/red_button00.png" id="16_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/red_button01.png" id="17_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/blue_button00.png" id="18_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/blue_button01.png" id="19_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/yellow_button00.png" id="20_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/yellow_button01.png" id="21_tex"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
-bg_color = Color(0.04, 0.07, 0.14, 0.92)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.3, 0.8, 1, 0.9)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-content_margin_left = 26
-content_margin_top = 26
-content_margin_right = 26
-content_margin_bottom = 26
+[ext_resource type="Texture2D" uid="uid://dww53ef8oxwnl" path="res://assets/ui/crosshair/crosshair_player.png" id="5_tex"]
+[ext_resource type="Texture2D" uid="uid://dj05curlct57s" path="res://assets/ui/buttons/grey_button00.png" id="6_tex"]
+[ext_resource type="Texture2D" uid="uid://dl0ol15nu4cly" path="res://assets/ui/buttons/grey_button01.png" id="7_tex"]
+[ext_resource type="Texture2D" uid="uid://yyxyek6aubur" path="res://assets/ui/hud/joystick_circle_pad_a.png" id="8_tex"]
+[ext_resource type="Texture2D" uid="uid://6qa6hte5wiq4" path="res://assets/ui/hud/joystick_circle_nub_a.png" id="9_tex"]
+[ext_resource type="Texture2D" uid="uid://dhtgvq57fjmau" path="res://assets/ui/hud/button_circle.png" id="10_tex"]
+[ext_resource type="Texture2D" uid="uid://cn4wg670c3m3q" path="res://assets/ui/hud/icon_fire.png" id="11_tex"]
+[ext_resource type="Texture2D" uid="uid://dhsl3ws85vmpw" path="res://assets/ui/hud/icon_hand.png" id="12_tex"]
+[ext_resource type="Texture2D" uid="uid://dp4ljquiu1a1n" path="res://assets/ui/hud/icon_target.png" id="13_tex"]
+[ext_resource type="Texture2D" uid="uid://bowuls1yewkpk" path="res://assets/ui/buttons/green_button00.png" id="14_tex"]
+[ext_resource type="Texture2D" uid="uid://bhditaarq4r0k" path="res://assets/ui/buttons/green_button01.png" id="15_tex"]
+[ext_resource type="Texture2D" uid="uid://bubc44fmtcwnc" path="res://assets/ui/buttons/red_button00.png" id="16_tex"]
+[ext_resource type="Texture2D" uid="uid://dgpdln0hpjr8e" path="res://assets/ui/buttons/red_button01.png" id="17_tex"]
+[ext_resource type="Texture2D" uid="uid://3rml8gt50w6q" path="res://assets/ui/buttons/blue_button00.png" id="18_tex"]
+[ext_resource type="Texture2D" uid="uid://diug75quttkqy" path="res://assets/ui/buttons/blue_button01.png" id="19_tex"]
+[ext_resource type="Texture2D" uid="uid://pwk53i5swvg8" path="res://assets/ui/buttons/yellow_button00.png" id="20_tex"]
+[ext_resource type="Texture2D" uid="uid://dmdv4b40foten" path="res://assets/ui/buttons/yellow_button01.png" id="21_tex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
 bg_color = Color(0, 0, 0, 0.55)
@@ -53,640 +37,632 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("6_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("7_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+content_margin_left = 26.0
+content_margin_top = 26.0
+content_margin_right = 26.0
+content_margin_bottom = 26.0
+bg_color = Color(0.04, 0.07, 0.14, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.8, 1, 0.9)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("14_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("15_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("16_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_9"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("17_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_10"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("18_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("19_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("20_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_13"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("21_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
-[node name="Hud" type="CanvasLayer"]
-layer = 10
+[node name="Hud" type="CanvasLayer" unique_id=166908293]
 process_mode = 3
+layer = 10
 script = ExtResource("1_scr")
 
-[node name="UI" type="Control" parent="."]
-theme = ExtResource("4_the")
+[node name="UI" type="Control" parent="." unique_id=1713991668]
 layout_mode = 3
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("4_the")
 
-[node name="Markers" type="Control" parent="UI"]
+[node name="Markers" type="Control" parent="UI" unique_id=556753021]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DamageFlash" type="ColorRect" parent="UI"]
+[node name="DamageFlash" type="ColorRect" parent="UI" unique_id=2085826205]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 color = Color(1, 0, 0, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
-[node name="Crosshair" type="TextureRect" parent="UI"]
-texture = ExtResource("5_tex")
-expand_mode = 1
+[node name="Crosshair" type="TextureRect" parent="UI" unique_id=623692432]
 modulate = Color(0.6, 1, 1, 0.9)
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40
-offset_top = -40
-offset_right = 40
-offset_bottom = 40
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("5_tex")
+expand_mode = 1
 
-[node name="HealthBar" type="ProgressBar" parent="UI"]
+[node name="HealthBar" type="ProgressBar" parent="UI" unique_id=890733507]
 unique_name_in_owner = true
-max_value = 100
-value = 100
-show_percentage = false
+layout_mode = 0
+offset_left = 28.0
+offset_top = 26.0
+offset_right = 408.0
+offset_bottom = 60.0
 theme_override_styles/background = SubResource("StyleBoxFlat_2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3")
-layout_mode = 0
-offset_left = 28
-offset_top = 26
-offset_right = 408
-offset_bottom = 60
+value = 100.0
+show_percentage = false
 
-[node name="HealthLabel" type="Label" parent="UI"]
+[node name="HealthLabel" type="Label" parent="UI" unique_id=1891111862]
 unique_name_in_owner = true
-text = "HULL"
+layout_mode = 0
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 400.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 20
-layout_mode = 0
-offset_left = 40
-offset_top = 28
-offset_right = 400
-offset_bottom = 58
-mouse_filter = 2
+text = "HULL"
 
-[node name="KillsLabel" type="Label" parent="UI"]
+[node name="KillsLabel" type="Label" parent="UI" unique_id=1068242683]
 unique_name_in_owner = true
-horizontal_alignment = 1
-text = "ENEMIES  0 / 0"
-theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0
 anchor_right = 0.5
-anchor_bottom = 0
-offset_left = -300
-offset_top = 20
-offset_right = 300
-offset_bottom = 60
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 30
+text = "ENEMIES  0 / 0"
+horizontal_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="UI"]
+[node name="TimeLabel" type="Label" parent="UI" unique_id=1286499188]
 unique_name_in_owner = true
-horizontal_alignment = 2
-text = "00:00.0"
-theme_override_font_sizes/font_size = 28
 layout_mode = 1
-anchor_left = 1
-anchor_top = 0
-anchor_right = 1
-anchor_bottom = 0
-offset_left = -330
-offset_top = 30
-offset_right = -120
-offset_bottom = 70
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330.0
+offset_top = 30.0
+offset_right = -120.0
+offset_bottom = 70.0
 grow_horizontal = 0
-grow_vertical = 1
-mouse_filter = 2
+theme_override_font_sizes/font_size = 28
+text = "00:00.0"
+horizontal_alignment = 2
 
-[node name="PauseButton" type="Button" parent="UI"]
+[node name="PauseButton" type="Button" parent="UI" unique_id=549216909]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(84, 72)
-text = "II"
-theme_override_styles/normal = SubResource("StyleBoxTexture_4")
-theme_override_styles/hover = SubResource("StyleBoxTexture_4")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5")
 layout_mode = 1
-anchor_left = 1
-anchor_top = 0
-anchor_right = 1
-anchor_bottom = 0
-offset_left = -108
-offset_top = 20
-offset_right = -24
-offset_bottom = 92
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = 92.0
 grow_horizontal = 0
-grow_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4")
+text = "II"
 
-[node name="Joystick" type="Control" parent="UI"]
+[node name="Joystick" type="Control" parent="UI" unique_id=2028788931]
 unique_name_in_owner = true
-script = ExtResource("2_scr")
 layout_mode = 1
-anchor_left = 0
-anchor_top = 1
-anchor_right = 0
-anchor_bottom = 1
-offset_left = 40
-offset_top = -330
-offset_right = 340
-offset_bottom = -30
-grow_horizontal = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -330.0
+offset_right = 340.0
+offset_bottom = -30.0
 grow_vertical = 0
+script = ExtResource("2_scr")
 
-[node name="Pad" type="TextureRect" parent="UI/Joystick"]
-texture = ExtResource("8_tex")
-expand_mode = 1
-stretch_mode = 0
+[node name="Pad" type="TextureRect" parent="UI/Joystick" unique_id=840670089]
 modulate = Color(1, 1, 1, 0.65)
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Nub" type="TextureRect" parent="UI/Joystick"]
-texture = ExtResource("9_tex")
+texture = ExtResource("8_tex")
 expand_mode = 1
-stretch_mode = 0
+
+[node name="Nub" type="TextureRect" parent="UI/Joystick" unique_id=2002122757]
 modulate = Color(1, 1, 1, 0.85)
 layout_mode = 0
-offset_left = 85
-offset_top = 85
-offset_right = 215
-offset_bottom = 215
+offset_left = 85.0
+offset_top = 85.0
+offset_right = 215.0
+offset_bottom = 215.0
 mouse_filter = 2
+texture = ExtResource("9_tex")
+expand_mode = 1
 
-[node name="FireButton" type="Control" parent="UI"]
+[node name="FireButton" type="Control" parent="UI" unique_id=25816663]
 unique_name_in_owner = true
-script = ExtResource("3_scr")
 layout_mode = 1
-anchor_left = 1
-anchor_top = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = -300
-offset_top = -280
-offset_right = -60
-offset_bottom = -40
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -280.0
+offset_right = -60.0
+offset_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+script = ExtResource("3_scr")
 
-[node name="Background" type="TextureRect" parent="UI/FireButton"]
-texture = ExtResource("10_tex")
-expand_mode = 1
-stretch_mode = 0
+[node name="Background" type="TextureRect" parent="UI/FireButton" unique_id=1003648721]
 modulate = Color(1, 0.35, 0.3, 0.7)
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("10_tex")
+expand_mode = 1
 
-[node name="Icon" type="TextureRect" parent="UI/FireButton"]
+[node name="Icon" type="TextureRect" parent="UI/FireButton" unique_id=1651965826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("11_tex")
 expand_mode = 1
 stretch_mode = 5
-layout_mode = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = 60
-offset_top = 60
-offset_right = -60
-offset_bottom = -60
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
-[node name="SteerHint" type="HBoxContainer" parent="UI"]
+[node name="SteerHint" type="HBoxContainer" parent="UI" unique_id=1282977224]
 modulate = Color(1, 1, 1, 0.8)
 layout_mode = 1
-anchor_left = 0
-anchor_top = 1
-anchor_right = 0
-anchor_bottom = 1
-offset_left = 60
-offset_top = -360
-offset_right = 340
-offset_bottom = -304
-grow_horizontal = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -360.0
+offset_right = 340.0
+offset_bottom = -304.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Icon" type="TextureRect" parent="UI/SteerHint"]
+[node name="Icon" type="TextureRect" parent="UI/SteerHint" unique_id=103709459]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("12_tex")
 expand_mode = 1
-layout_mode = 2
-custom_minimum_size = Vector2(48, 48)
-mouse_filter = 2
 
-[node name="Label" type="Label" parent="UI/SteerHint"]
-text = "DRAG TO STEER"
+[node name="Label" type="Label" parent="UI/SteerHint" unique_id=1906462910]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-layout_mode = 2
-mouse_filter = 2
+text = "DRAG TO STEER"
 
-[node name="FireHint" type="HBoxContainer" parent="UI"]
+[node name="FireHint" type="HBoxContainer" parent="UI" unique_id=306366646]
 modulate = Color(1, 1, 1, 0.8)
 layout_mode = 1
-anchor_left = 1
-anchor_top = 1
-anchor_right = 1
-anchor_bottom = 1
-offset_left = -330
-offset_top = -310
-offset_right = -50
-offset_bottom = -254
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -330.0
+offset_top = -310.0
+offset_right = -50.0
+offset_bottom = -254.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Icon" type="TextureRect" parent="UI/FireHint"]
+[node name="Icon" type="TextureRect" parent="UI/FireHint" unique_id=520648075]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("13_tex")
 expand_mode = 1
-layout_mode = 2
-custom_minimum_size = Vector2(48, 48)
-mouse_filter = 2
 
-[node name="Label" type="Label" parent="UI/FireHint"]
-text = "HOLD TO FIRE"
+[node name="Label" type="Label" parent="UI/FireHint" unique_id=1795118392]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-layout_mode = 2
-mouse_filter = 2
+text = "HOLD TO FIRE"
 
-[node name="MessageLabel" type="Label" parent="UI"]
+[node name="MessageLabel" type="Label" parent="UI" unique_id=1853793342]
 unique_name_in_owner = true
-horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0)
-text = ""
-theme_override_font_sizes/font_size = 34
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 90.0
+offset_right = 520.0
+offset_bottom = 130.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.5, 1, 0.9, 1)
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0
-anchor_right = 0.5
-anchor_bottom = 0
-offset_left = -520
-offset_top = 90
-offset_right = 520
-offset_bottom = 130
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
-
-[node name="WarningLabel" type="Label" parent="UI"]
-unique_name_in_owner = true
-visible = false
+theme_override_font_sizes/font_size = 34
 horizontal_alignment = 1
-text = "WARNING: RETURN TO THE COMBAT ZONE"
-theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0
-anchor_right = 0.5
-anchor_bottom = 0
-offset_left = -520
-offset_top = 150
-offset_right = 520
-offset_bottom = 190
-grow_horizontal = 2
-grow_vertical = 1
-mouse_filter = 2
 
-[node name="Loading" type="ColorRect" parent="UI"]
+[node name="WarningLabel" type="Label" parent="UI" unique_id=1982732326]
 unique_name_in_owner = true
 visible = false
-color = Color(0, 0, 0, 0.75)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -520.0
+offset_top = 150.0
+offset_right = 520.0
+offset_bottom = 190.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
+theme_override_font_sizes/font_size = 30
+text = "WARNING: RETURN TO THE COMBAT ZONE"
+horizontal_alignment = 1
+
+[node name="Loading" type="ColorRect" parent="UI" unique_id=1751816321]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
 
-[node name="Label" type="Label" parent="UI/Loading"]
+[node name="Label" type="Label" parent="UI/Loading" unique_id=1839823129]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "PREPARING FLIGHT NAVIGATION..."
 horizontal_alignment = 1
 vertical_alignment = 1
-text = "PREPARING FLIGHT NAVIGATION..."
-theme_override_font_sizes/font_size = 32
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
-[node name="GameOverPanel" type="Control" parent="UI"]
+[node name="GameOverPanel" type="Control" parent="UI" unique_id=1891401458]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Dim" type="ColorRect" parent="UI/GameOverPanel"]
+[node name="Dim" type="ColorRect" parent="UI/GameOverPanel" unique_id=394469140]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
+
+[node name="Center" type="CenterContainer" parent="UI/GameOverPanel" unique_id=802029888]
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="CenterContainer" parent="UI/GameOverPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="PanelContainer" parent="UI/GameOverPanel/Center"]
+[node name="Panel" type="PanelContainer" parent="UI/GameOverPanel/Center" unique_id=790712970]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
-layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="UI/GameOverPanel/Center/Panel"]
-alignment = 1
+[node name="Box" type="VBoxContainer" parent="UI/GameOverPanel/Center/Panel" unique_id=2047687662]
+layout_mode = 2
 theme_override_constants/separation = 18
-layout_mode = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="UI/GameOverPanel/Center/Panel/Box"]
-horizontal_alignment = 1
-text = "GAME OVER"
-theme_override_font_sizes/font_size = 46
+[node name="Title" type="Label" parent="UI/GameOverPanel/Center/Panel/Box" unique_id=1378204231]
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.3, 0.25, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "GAME OVER"
+horizontal_alignment = 1
 
-[node name="Message" type="Label" parent="UI/GameOverPanel/Center/Panel/Box"]
-unique_name_in_owner = false
+[node name="Message" type="Label" parent="UI/GameOverPanel/Center/Panel/Box" unique_id=998301077]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
 text = "Your ship was destroyed."
-theme_override_font_sizes/font_size = 26
-layout_mode = 2
 
-[node name="ContinueButton" type="Button" parent="UI/GameOverPanel/Center/Panel/Box"]
+[node name="ContinueButton" type="Button" parent="UI/GameOverPanel/Center/Panel/Box" unique_id=218468629]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6")
 text = "CONTINUE"
-theme_override_styles/normal = SubResource("StyleBoxTexture_6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
-layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="UI/GameOverPanel/Center/Panel/Box"]
+[node name="QuitButton" type="Button" parent="UI/GameOverPanel/Center/Panel/Box" unique_id=1473993531]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_9")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8")
 text = "QUIT"
-theme_override_styles/normal = SubResource("StyleBoxTexture_8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_9")
-layout_mode = 2
 
-[node name="CompletePanel" type="Control" parent="UI"]
+[node name="CompletePanel" type="Control" parent="UI" unique_id=817105914]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Dim" type="ColorRect" parent="UI/CompletePanel"]
+[node name="Dim" type="ColorRect" parent="UI/CompletePanel" unique_id=243463384]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
+
+[node name="Center" type="CenterContainer" parent="UI/CompletePanel" unique_id=443493302]
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="CenterContainer" parent="UI/CompletePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="PanelContainer" parent="UI/CompletePanel/Center"]
+[node name="Panel" type="PanelContainer" parent="UI/CompletePanel/Center" unique_id=1988558127]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
-layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="UI/CompletePanel/Center/Panel"]
-alignment = 1
+[node name="Box" type="VBoxContainer" parent="UI/CompletePanel/Center/Panel" unique_id=591484035]
+layout_mode = 2
 theme_override_constants/separation = 18
-layout_mode = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="UI/CompletePanel/Center/Panel/Box"]
-horizontal_alignment = 1
-text = "MISSION COMPLETE"
-theme_override_font_sizes/font_size = 46
+[node name="Title" type="Label" parent="UI/CompletePanel/Center/Panel/Box" unique_id=117769938]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "MISSION COMPLETE"
+horizontal_alignment = 1
 
-[node name="CompleteTime" type="Label" parent="UI/CompletePanel/Center/Panel/Box"]
+[node name="CompleteTime" type="Label" parent="UI/CompletePanel/Center/Panel/Box" unique_id=1626107905]
 unique_name_in_owner = true
-text = "Total time: 00:00.0"
+layout_mode = 2
 theme_override_font_sizes/font_size = 34
-layout_mode = 2
+text = "Total time: 00:00.0"
 
-[node name="CompleteKills" type="Label" parent="UI/CompletePanel/Center/Panel/Box"]
+[node name="CompleteKills" type="Label" parent="UI/CompletePanel/Center/Panel/Box" unique_id=1314111399]
 unique_name_in_owner = true
-text = "Enemies destroyed: 0"
+layout_mode = 2
 theme_override_font_sizes/font_size = 26
-layout_mode = 2
+text = "Enemies destroyed: 0"
 
-[node name="ReplayButton" type="Button" parent="UI/CompletePanel/Center/Panel/Box"]
+[node name="ReplayButton" type="Button" parent="UI/CompletePanel/Center/Panel/Box" unique_id=658406155]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
-text = "REPLAY LEVEL"
+layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
-layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_6")
+text = "REPLAY LEVEL"
 
-[node name="MenuButton" type="Button" parent="UI/CompletePanel/Center/Panel/Box"]
+[node name="MenuButton" type="Button" parent="UI/CompletePanel/Center/Panel/Box" unique_id=457978765]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
-text = "MAIN MENU"
-theme_override_styles/normal = SubResource("StyleBoxTexture_10")
-theme_override_styles/hover = SubResource("StyleBoxTexture_10")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_11")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_10")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_11")
+theme_override_styles/hover = SubResource("StyleBoxTexture_10")
+text = "MAIN MENU"
 
-[node name="PausePanel" type="Control" parent="UI"]
+[node name="PausePanel" type="Control" parent="UI" unique_id=635193948]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Dim" type="ColorRect" parent="UI/PausePanel"]
+[node name="Dim" type="ColorRect" parent="UI/PausePanel" unique_id=1651768698]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
+
+[node name="Center" type="CenterContainer" parent="UI/PausePanel" unique_id=1936251434]
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="CenterContainer" parent="UI/PausePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="PanelContainer" parent="UI/PausePanel/Center"]
+[node name="Panel" type="PanelContainer" parent="UI/PausePanel/Center" unique_id=1827083048]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
-layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="UI/PausePanel/Center/Panel"]
-alignment = 1
+[node name="Box" type="VBoxContainer" parent="UI/PausePanel/Center/Panel" unique_id=794143078]
+layout_mode = 2
 theme_override_constants/separation = 18
-layout_mode = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="UI/PausePanel/Center/Panel/Box"]
-horizontal_alignment = 1
-text = "PAUSED"
-theme_override_font_sizes/font_size = 46
+[node name="Title" type="Label" parent="UI/PausePanel/Center/Panel/Box" unique_id=319174631]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "PAUSED"
+horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="UI/PausePanel/Center/Panel/Box"]
+[node name="ResumeButton" type="Button" parent="UI/PausePanel/Center/Panel/Box" unique_id=225190754]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
-text = "RESUME"
+layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7")
-layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_6")
+text = "RESUME"
 
-[node name="RestartButton" type="Button" parent="UI/PausePanel/Center/Panel/Box"]
+[node name="RestartButton" type="Button" parent="UI/PausePanel/Center/Panel/Box" unique_id=900921175]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
-text = "RESTART"
+layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_12")
-theme_override_styles/hover = SubResource("StyleBoxTexture_12")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_13")
-layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_12")
+text = "RESTART"
 
-[node name="QuitMenuButton" type="Button" parent="UI/PausePanel/Center/Panel/Box"]
+[node name="QuitMenuButton" type="Button" parent="UI/PausePanel/Center/Panel/Box" unique_id=1092301805]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(420, 74)
-text = "QUIT TO MENU"
-theme_override_styles/normal = SubResource("StyleBoxTexture_8")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_9")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_8")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_9")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8")
+text = "QUIT TO MENU"

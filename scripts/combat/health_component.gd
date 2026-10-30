@@ -1,6 +1,6 @@
 class_name HealthComponent
 extends Node
-## Reusable health attribute for the player and the enemies.
+ 
 
 signal health_changed(current: int, maximum: int)
 signal died

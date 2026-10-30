@@ -1,4 +1,0 @@
-res://scenes/player_ship.tscn
-res://scripts/ui/hud.gd
-res://scripts/levels/planet_level.gd
-res://scripts/autoload/audio_manager.gd
