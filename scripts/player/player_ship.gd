@@ -1,6 +1,8 @@
 class_name PlayerShip
 extends CharacterBody3D
- 
+## Player ship (scene: scenes/player_ship.tscn). Constant forward thrust,
+## steering with the virtual joystick and laser fire from the HUD fire button.
+## Keyboard (arrow keys + space) also works for testing on a PC.
 
 signal health_changed(current: int, maximum: int)
 signal died
@@ -16,6 +18,9 @@ var touch_steer := Vector2.ZERO
 var touch_fire := false
 var is_dead := false
 var current_speed := 0.0
+
+## Lets enemies' steering behaviours (pursue, strafe) read our position and velocity.
+var steering_agent := GSAISteeringAgent.new()
 
 var _fire_cooldown := 0.0
 var _collision_cooldown := 0.0
@@ -75,6 +80,11 @@ func _physics_process(delta: float) -> void:
 	_fire_cooldown -= delta
 	if firing and _fire_cooldown <= 0.0:
 		_fire()
+
+
+func sync_steering_agent() -> void:
+	steering_agent.position = global_position
+	steering_agent.linear_velocity = velocity
 
 
 func take_damage(amount: int) -> void:

@@ -1,10 +1,23 @@
 class_name ChaseState
 extends EnemyState
- 
+## Chasing: the player is close enough to be hunted. With a clear line of sight
+## the enemy pursues the player (GSAIPursue); otherwise it follows a navigation
+## path to the player (GSAIFollowPath).
 
 const REPATH_INTERVAL := 1.0
 
+var _pursue_blend: GSAIBlend
+var _path_blend: GSAIBlend
 var _repath_timer := 0.0
+
+
+func setup() -> void:
+	_pursue_blend = GSAIBlend.new(enemy.agent)
+	_pursue_blend.add(enemy.pursue, 1.0)
+	_pursue_blend.add(enemy.avoid, 1.8)
+	_path_blend = GSAIBlend.new(enemy.agent)
+	_path_blend.add(enemy.follow_path, 1.0)
+	_path_blend.add(enemy.avoid, 1.8)
 
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -25,12 +38,11 @@ func physics_update(delta: float) -> void:
 		finished.emit("Attack", {})
 		return
 
-	var max_speed: float = e.config["max_speed"]
-	var desired := Steering.pursue(e.global_position, e.player.global_position, e.player.velocity, max_speed)
-	if not sees_player:
+	if sees_player:
+		steer_with(_pursue_blend, delta)
+	else:
 		_repath_timer -= delta
 		if _repath_timer <= 0.0:
 			_repath_timer = REPATH_INTERVAL
 			e.request_path(e.player.global_position)
-		desired = e.follow_path_velocity()
-	e.steer(desired, delta)
+		steer_with(_path_blend, delta)

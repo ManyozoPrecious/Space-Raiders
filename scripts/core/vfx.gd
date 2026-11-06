@@ -1,6 +1,10 @@
 class_name Vfx
 extends RefCounted
- 
+## Particle effects built from code with Godot's GPUParticles3D system:
+## explosions, impact sparks and engine exhaust.
+
+
+const GLOW_TEXTURE := "res://assets/vfx/exhaust_glow.tres"
 
 
 static func _make_material(color: Color) -> StandardMaterial3D:
@@ -10,6 +14,11 @@ static func _make_material(color: Color) -> StandardMaterial3D:
 	material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.albedo_color = color
+	# Soft round glow texture on camera-facing quads, so particles blend into
+	# each other instead of showing hard sphere edges.
+	material.albedo_texture = load(GLOW_TEXTURE)
+	material.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	material.billboard_keep_scale = true
 	return material
 
 
@@ -36,15 +45,14 @@ static func _make_particles(amount: int, lifetime: float, radius: float) -> GPUP
 	particles.amount = amount
 	particles.lifetime = lifetime
 	particles.visibility_aabb = AABB(Vector3(-60, -60, -60), Vector3(120, 120, 120))
-	var mesh := SphereMesh.new()
-	mesh.radius = radius
-	mesh.height = radius * 2.0
-	mesh.radial_segments = 6
-	mesh.rings = 3
+	var mesh := QuadMesh.new()
+	mesh.size = Vector2(radius * 2.0, radius * 2.0)
 	particles.draw_pass_1 = mesh
+	particles.fixed_fps = 0
 	return particles
 
- 
+
+## One-shot fireball. [param power] scales size and speed.
 static func explosion(parent: Node, position: Vector3, power := 1.0) -> void:
 	var particles := _make_particles(48, 1.0, 0.7)
 	var process := ParticleProcessMaterial.new()
@@ -71,7 +79,7 @@ static func explosion(parent: Node, position: Vector3, power := 1.0) -> void:
 	parent.get_tree().create_timer(2.0).timeout.connect(particles.queue_free)
 
 
- 
+## Small burst used when a laser hits something.
 static func spark(parent: Node, position: Vector3, color := Color(0.6, 0.9, 1.0)) -> void:
 	var particles := _make_particles(12, 0.35, 0.25)
 	var process := ParticleProcessMaterial.new()
@@ -92,9 +100,9 @@ static func spark(parent: Node, position: Vector3, color := Color(0.6, 0.9, 1.0)
 	parent.get_tree().create_timer(1.0).timeout.connect(particles.queue_free)
 
 
- 
+## Continuous exhaust that streams behind the ship (+Z is behind).
 static func engine_exhaust(color: Color, size := 1.0) -> GPUParticles3D:
-	var particles := _make_particles(30, 0.45, 0.35 * size)
+	var particles := _make_particles(80, 0.4, 0.6 * size)
 	var process := ParticleProcessMaterial.new()
 	process.direction = Vector3(0, 0, 1)
 	process.spread = 6.0

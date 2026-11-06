@@ -1,7 +1,14 @@
 class_name WanderState
 extends EnemyState
-## Wandering: the player is not close. Flies between random waypoints using
-## path following (FlightNavigation3D) blended with the wander behaviour.
+## Wandering: the player is not close. Follows a FlightNavigation3D path to a
+## random waypoint (GSAIFollowPath) blended with wander and obstacle avoidance.
+
+
+func setup() -> void:
+	blend = GSAIBlend.new(enemy.agent)
+	blend.add(enemy.follow_path, 0.7)
+	blend.add(enemy.wander, 0.35)
+	blend.add(enemy.avoid, 1.8)
 
 
 func enter(_msg: Dictionary = {}) -> void:
@@ -15,11 +22,7 @@ func physics_update(delta: float) -> void:
 		return
 	if e.path_finished():
 		_pick_destination()
-	var max_speed: float = e.config["max_speed"]
-	var desired := e.follow_path_velocity() * 0.7
-	e.wander_offset = Steering.update_wander_offset(e.wander_offset, e.rng)
-	desired += Steering.wander(-e.global_transform.basis.z, e.wander_offset, max_speed) * 0.35
-	e.steer(desired, delta)
+	steer_with(blend, delta)
 
 
 func _pick_destination() -> void:

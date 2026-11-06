@@ -1,6 +1,12 @@
 class_name EnemyShip
 extends CharacterBody3D
- 
+## Flying enemy (scenes: enemy_fighter.tscn, enemy_gunship.tscn). Decisions are
+## made by a finite state machine whose states are child nodes (Wander, Chase,
+## Attack). Movement uses the GDQuest Godot Steering AI Framework
+## (addons/com.gdquest.godot-steering-ai-framework, MIT licence): GSAISteeringAgent,
+## GSAIPursue, GSAIArrive, GSAIFollowPath (over paths from the FlightNavigation3D
+## plugin) and GSAIBlend, plus our own wander, strafe and obstacle avoidance
+## behaviours built on the framework's GSAISteeringBehavior.
 
 signal died(enemy: EnemyShip)
 
@@ -50,17 +56,28 @@ const TYPES := {
 	},
 }
 
- 
+## Which entry of TYPES this scene uses (set in the scene's Inspector).
 @export var type_key := "fighter"
 
 var config: Dictionary
 var player: PlayerShip
 var level: LevelBase
 var rng := RandomNumberGenerator.new()
-var wander_offset := Vector3.FORWARD * 6.0
-var path := PackedVector3Array()
-var path_index := 0
 var is_dead := false
+
+# Steering framework objects (see _setup_steering).
+var agent := GSAISteeringAgent.new()
+var target_location := GSAIAgentLocation.new()
+var path_end := Vector3.ZERO
+var seek: GSAISeek
+var pursue: GSAIPursue
+var arrive: GSAIArrive
+var follow_path: GSAIFollowPath
+var wander: WanderBehavior
+var strafe: StrafeBehavior
+var avoid: AvoidObstaclesBehavior
+
+const DRAG := 4.0
 
 var _fire_timer := 0.0
 var _los_timer := 0.0
@@ -90,15 +107,48 @@ func _ready() -> void:
 	_health.reset()
 	_health.died.connect(_on_died)
 
-	# Give every AI state a reference to this enemy, then start in Wander.
+	_setup_steering()
+
+	# Give every AI state a reference to this enemy, let it build its steering
+	# blend, then start in Wander once the level has positioned the enemy.
 	for state in fsm.get_children():
 		if state is EnemyState:
 			(state as EnemyState).enemy = self
+			(state as EnemyState).setup()
 	fsm.register_children()
-	fsm.start("Wander")
+	fsm.start.call_deferred("Wander")
+
+
+## Creates the framework agent and the behaviours that the states blend together.
+func _setup_steering() -> void:
+	agent.linear_speed_max = config["max_speed"]
+	agent.linear_acceleration_max = config["acceleration"]
+	agent.bounding_radius = float(config["size"]) * 0.4
+	seek = GSAISeek.new(agent, target_location)
+	pursue = GSAIPursue.new(agent, player.steering_agent, 1.5)
+	arrive = GSAIArrive.new(agent, target_location)
+	arrive.arrival_tolerance = 8.0
+	arrive.deceleration_radius = 25.0
+	follow_path = GSAIFollowPath.new(agent, GSAIPath.new([Vector3.ZERO, Vector3.FORWARD * 10.0]), 12.0)
+	follow_path.arrival_tolerance = 5.0
+	follow_path.deceleration_radius = 30.0
+	wander = WanderBehavior.new(agent)
+	strafe = StrafeBehavior.new(agent, player.steering_agent)
+	avoid = AvoidObstaclesBehavior.new(agent, self)
+
+
+## The framework only knows what we tell it, so refresh the agent every frame.
+func _sync_agent() -> void:
+	agent.position = global_position
+	agent.linear_velocity = velocity
+	agent.orientation = GSAIUtils.vector3_to_angle(-global_transform.basis.z)
+	wander.forward = -global_transform.basis.z
+	if has_target():
+		player.sync_steering_agent()
 
 
 func _physics_process(delta: float) -> void:
+	_sync_agent()
 	_fire_timer -= delta
 	_los_timer -= delta
 	if _los_timer <= 0.0:
@@ -106,7 +156,7 @@ func _physics_process(delta: float) -> void:
 		_has_los = has_target() and Steering.has_line_of_sight(self, player.global_position)
 
 
- 
+# --- Queries used by the states -------------------------------------------
 
 func has_target() -> bool:
 	return player != null and is_instance_valid(player) and not player.is_dead
@@ -125,45 +175,42 @@ func is_facing(target: Vector3, max_angle_deg: float) -> bool:
 	return (-global_transform.basis.z).dot(to_target) > cos(deg_to_rad(max_angle_deg))
 
 
- 
+# --- Navigation helpers ---------------------------------------------------
 
-## Asks the FlightNavigation3D plugin for a path. Falls back to a straight
-## line (single waypoint) when no navigation data is available.
+## Asks the FlightNavigation3D plugin for a path and gives it to the
+## GSAIFollowPath behaviour. Falls back to a straight line when no navigation
+## data is available. Returns true when the plugin found a path.
 func request_path(destination: Vector3) -> bool:
-	path = PackedVector3Array()
-	path_index = 0
+	var points: Array = []
+	var found := false
 	if level != null and level.is_nav_ready():
-		path = level.flight_nav.find_path(global_position, destination)
-	if path.is_empty():
-		path = PackedVector3Array([destination])
-		return false
-	return true
-
-
-func follow_path_velocity() -> Vector3:
-	path_index = Steering.path_follow_index(global_position, path, path_index, level.nav_reach_radius)
-	return Steering.seek(global_position, path[path_index], config["max_speed"])
+		points = Array(level.flight_nav.find_path(global_position, destination))
+		found = not points.is_empty()
+	if not found:
+		points = [destination]
+	var waypoints: Array = [global_position]
+	for point in points:
+		if (point as Vector3).distance_to(waypoints.back()) > 0.5:
+			waypoints.append(point)
+	if waypoints.size() < 2:
+		waypoints.append(global_position - global_transform.basis.z * 5.0)
+	path_end = waypoints.back()
+	follow_path.path = GSAIPath.new(waypoints)
+	return found
 
 
 func path_finished() -> bool:
-	if path.is_empty():
-		return true
-	var last := path[path.size() - 1]
-	return path_index >= path.size() - 1 and global_position.distance_to(last) < level.nav_reach_radius * 1.5
+	return global_position.distance_to(path_end) < level.nav_reach_radius * 1.5
 
 
- 
- 
-func steer(desired_velocity: Vector3, delta: float, look_target := Vector3.INF) -> void:
-	var forward := velocity.normalized() if velocity.length() > 2.0 else -global_transform.basis.z
-	var avoid := Steering.avoid_obstacles(self, forward, 45.0)
-	desired_velocity += avoid * float(config["max_speed"]) * 1.8
-	desired_velocity = desired_velocity.limit_length(config["max_speed"])
-	velocity = velocity.move_toward(desired_velocity, float(config["acceleration"]) * delta)
-	if look_target != Vector3.INF:
-		_face_direction(look_target - global_position, delta)
-	else:
-		_face_direction(velocity, delta)
+# --- Movement -------------------------------------------------------------
+
+## Applies the acceleration chosen by the steering behaviours.
+func apply_steering(acceleration: GSAITargetAcceleration, delta: float, look_target := Vector3.INF) -> void:
+	velocity = GSAIUtils.clampedv3(velocity + acceleration.linear * delta, agent.linear_speed_max)
+	velocity = velocity.move_toward(Vector3.ZERO, DRAG * delta)
+	var facing := velocity if look_target == Vector3.INF else look_target - global_position
+	_face_direction(facing, delta)
 	move_and_slide()
 
 
@@ -177,7 +224,8 @@ func _face_direction(direction: Vector3, delta: float) -> void:
 	global_transform.basis = global_transform.basis.slerp(target_basis, blend).orthonormalized()
 
 
- 
+# --- Combat ---------------------------------------------------------------
+
 func fire_at_player() -> void:
 	if _fire_timer > 0.0 or not has_target():
 		return
@@ -202,7 +250,7 @@ func take_damage(amount: int) -> void:
 		return
 	AudioManager.play_sfx_3d("hit", global_position, -4.0)
 	_health.take_damage(amount)
-	 
+	# Getting shot makes a wandering enemy hunt the player.
 	if not is_dead and fsm.current_name == "Wander":
 		fsm.transition_to("Chase")
 

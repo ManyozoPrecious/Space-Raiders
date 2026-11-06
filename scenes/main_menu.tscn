@@ -1,17 +1,21 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene format=3 uid="uid://cgy7vynef1c00"]
 
-[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_scr"]
+[ext_resource type="Script" uid="uid://l3dptsa7hfgr" path="res://scripts/ui/main_menu.gd" id="1_scr"]
 [ext_resource type="Theme" path="res://assets/ui/game_theme.tres" id="2_the"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/green_button00.png" id="3_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/green_button01.png" id="4_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/blue_button00.png" id="5_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/blue_button01.png" id="6_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/red_button00.png" id="7_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/red_button01.png" id="8_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/yellow_button00.png" id="9_tex"]
-[ext_resource type="Texture2D" path="res://assets/ui/buttons/yellow_button01.png" id="10_tex"]
+[ext_resource type="Texture2D" uid="uid://bowuls1yewkpk" path="res://assets/ui/buttons/green_button00.png" id="3_tex"]
+[ext_resource type="Texture2D" uid="uid://bhditaarq4r0k" path="res://assets/ui/buttons/green_button01.png" id="4_tex"]
+[ext_resource type="Texture2D" uid="uid://3rml8gt50w6q" path="res://assets/ui/buttons/blue_button00.png" id="5_tex"]
+[ext_resource type="Texture2D" uid="uid://diug75quttkqy" path="res://assets/ui/buttons/blue_button01.png" id="6_tex"]
+[ext_resource type="Texture2D" uid="uid://bubc44fmtcwnc" path="res://assets/ui/buttons/red_button00.png" id="7_tex"]
+[ext_resource type="Texture2D" uid="uid://dgpdln0hpjr8e" path="res://assets/ui/buttons/red_button01.png" id="8_tex"]
+[ext_resource type="Texture2D" uid="uid://pwk53i5swvg8" path="res://assets/ui/buttons/yellow_button00.png" id="9_tex"]
+[ext_resource type="Texture2D" uid="uid://dmdv4b40foten" path="res://assets/ui/buttons/yellow_button01.png" id="10_tex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+content_margin_left = 26.0
+content_margin_top = 26.0
+content_margin_right = 26.0
+content_margin_bottom = 26.0
 bg_color = Color(0.04, 0.07, 0.14, 0.92)
 border_width_left = 3
 border_width_top = 3
@@ -22,13 +26,62 @@ corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
-content_margin_left = 26
-content_margin_top = 26
-content_margin_right = 26
-content_margin_bottom = 26
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+texture = ExtResource("3_tex")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+texture = ExtResource("4_tex")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+texture = ExtResource("5_tex")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+texture = ExtResource("6_tex")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_9"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+texture = ExtResource("7_tex")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_10"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+texture = ExtResource("8_tex")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="Environment" id="Environment_2"]
-background_mode = 0
 ambient_light_source = 2
 ambient_light_color = Color(0.7, 0.75, 0.9, 1)
 ambient_light_energy = 0.8
@@ -47,452 +100,384 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5"]
-texture = ExtResource("3_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6"]
-texture = ExtResource("4_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7"]
-texture = ExtResource("5_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8"]
-texture = ExtResource("6_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_9"]
-texture = ExtResource("7_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_10"]
-texture = ExtResource("8_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("9_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 texture = ExtResource("10_tex")
-texture_margin_left = 10
-texture_margin_top = 10
-texture_margin_right = 10
-texture_margin_bottom = 12
-content_margin_left = 16
-content_margin_right = 16
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 12.0
 
-[node name="MainMenu" type="Control"]
-theme = ExtResource("2_the")
-script = ExtResource("1_scr")
+[node name="MainMenu" type="Control" unique_id=1955428733]
 layout_mode = 3
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_the")
+script = ExtResource("1_scr")
 
-[node name="Background" type="ColorRect" parent="."]
-color = Color(0.02, 0.03, 0.08, 1)
+[node name="Background" type="ColorRect" parent="." unique_id=920350882]
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.02, 0.03, 0.08, 1)
 
-[node name="Stars" type="Control" parent="."]
+[node name="Stars" type="Control" parent="." unique_id=594070592]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MainPanel" type="CenterContainer" parent="."]
+[node name="MainPanel" type="CenterContainer" parent="." unique_id=27496199]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="PanelContainer" parent="MainPanel"]
+[node name="Panel" type="PanelContainer" parent="MainPanel" unique_id=365162585]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
-layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="MainPanel/Panel"]
-alignment = 1
+[node name="Box" type="VBoxContainer" parent="MainPanel/Panel" unique_id=60726267]
+layout_mode = 2
 theme_override_constants/separation = 16
-layout_mode = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="MainPanel/Panel/Box"]
-horizontal_alignment = 1
+[node name="Title" type="Label" parent="MainPanel/Panel/Box" unique_id=1626150068]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.95, 1, 1)
+theme_override_font_sizes/font_size = 44
 text = "SPACE RAIDERS"
-theme_override_font_sizes/font_size = 44
-theme_override_colors/font_color = Color(0.5, 0.95, 1, 1)
-layout_mode = 2
-
-[node name="SummaryLabel" type="Label" parent="MainPanel/Panel/Box"]
-unique_name_in_owner = true
 horizontal_alignment = 1
-text = ""
-theme_override_font_sizes/font_size = 22
+
+[node name="SummaryLabel" type="Label" parent="MainPanel/Panel/Box" unique_id=1120921144]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
 
-[node name="PlayButton" type="Button" parent="MainPanel/Panel/Box"]
+[node name="PlayButton" type="Button" parent="MainPanel/Panel/Box" unique_id=289638536]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 76)
-text = "PLAY"
+layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_5")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6")
-layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_5")
+text = "PLAY"
 
-[node name="ShipButton" type="Button" parent="MainPanel/Panel/Box"]
+[node name="ShipButton" type="Button" parent="MainPanel/Panel/Box" unique_id=1279362956]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 76)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7")
 text = "SELECT SHIP"
-theme_override_styles/normal = SubResource("StyleBoxTexture_7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
-layout_mode = 2
 
-[node name="LevelButton" type="Button" parent="MainPanel/Panel/Box"]
+[node name="LevelButton" type="Button" parent="MainPanel/Panel/Box" unique_id=2014803536]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 76)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7")
 text = "SELECT LEVEL"
-theme_override_styles/normal = SubResource("StyleBoxTexture_7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
-layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="MainPanel/Panel/Box"]
+[node name="QuitButton" type="Button" parent="MainPanel/Panel/Box" unique_id=88774202]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 76)
-text = "QUIT GAME"
-theme_override_styles/normal = SubResource("StyleBoxTexture_9")
-theme_override_styles/hover = SubResource("StyleBoxTexture_9")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_10")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_9")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_10")
+theme_override_styles/hover = SubResource("StyleBoxTexture_9")
+text = "QUIT GAME"
 
-[node name="ShipPanel" type="CenterContainer" parent="."]
+[node name="ShipPanel" type="CenterContainer" parent="." unique_id=1230005402]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-visible = false
 
-[node name="Panel" type="PanelContainer" parent="ShipPanel"]
+[node name="Panel" type="PanelContainer" parent="ShipPanel" unique_id=867371468]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
-layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="ShipPanel/Panel"]
-alignment = 1
+[node name="Box" type="VBoxContainer" parent="ShipPanel/Panel" unique_id=606643127]
+layout_mode = 2
 theme_override_constants/separation = 16
-layout_mode = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="ShipPanel/Panel/Box"]
-horizontal_alignment = 1
-text = "SELECT SHIP"
-theme_override_font_sizes/font_size = 44
+[node name="Title" type="Label" parent="ShipPanel/Panel/Box" unique_id=408664883]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.95, 1, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "SELECT SHIP"
+horizontal_alignment = 1
 
-[node name="Row" type="HBoxContainer" parent="ShipPanel/Panel/Box"]
+[node name="Row" type="HBoxContainer" parent="ShipPanel/Panel/Box" unique_id=1258741173]
+layout_mode = 2
 theme_override_constants/separation = 30
-layout_mode = 2
 
-[node name="PreviewContainer" type="SubViewportContainer" parent="ShipPanel/Panel/Box/Row"]
-stretch = true
-layout_mode = 2
+[node name="PreviewContainer" type="SubViewportContainer" parent="ShipPanel/Panel/Box/Row" unique_id=669261355]
 custom_minimum_size = Vector2(480, 340)
+layout_mode = 2
+stretch = true
 
-[node name="Viewport" type="SubViewport" parent="ShipPanel/Panel/Box/Row/PreviewContainer"]
+[node name="Viewport" type="SubViewport" parent="ShipPanel/Panel/Box/Row/PreviewContainer" unique_id=525660723]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(480, 340)
 render_target_update_mode = 4
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport" unique_id=576978209]
 environment = SubResource("Environment_2")
 
-[node name="Camera3D" type="Camera3D" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport"]
+[node name="Camera3D" type="Camera3D" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport" unique_id=666958072]
 transform = Transform3D(1, 0, 0, 0, 0.97815, 0.20791, 0, -0.20791, 0.97815, 0, 4, 17)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport" unique_id=641833499]
 transform = Transform3D(0.86603, -0.28679, 0.40958, 0, 0.81915, 0.57358, -0.5, -0.49673, 0.70941, 0, 0, 0)
 
-[node name="PreviewPivot" type="Node3D" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport"]
+[node name="PreviewPivot" type="Node3D" parent="ShipPanel/Panel/Box/Row/PreviewContainer/Viewport" unique_id=686456265]
 unique_name_in_owner = true
 
-[node name="Stats" type="VBoxContainer" parent="ShipPanel/Panel/Box/Row"]
-theme_override_constants/separation = 12
+[node name="Stats" type="VBoxContainer" parent="ShipPanel/Panel/Box/Row" unique_id=1218670270]
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="ShipName" type="Label" parent="ShipPanel/Panel/Box/Row/Stats"]
+[node name="ShipName" type="Label" parent="ShipPanel/Panel/Box/Row/Stats" unique_id=1973684394]
 unique_name_in_owner = true
-text = ""
-theme_override_font_sizes/font_size = 38
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 38
 
-[node name="ShipDesc" type="Label" parent="ShipPanel/Panel/Box/Row/Stats"]
+[node name="ShipDesc" type="Label" parent="ShipPanel/Panel/Box/Row/Stats" unique_id=1324171415]
 unique_name_in_owner = true
-text = ""
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
-layout_mode = 2
 
-[node name="SpeedLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats"]
+[node name="SpeedLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats" unique_id=1338092012]
+layout_mode = 2
 theme_override_constants/separation = 12
-layout_mode = 2
 
-[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/SpeedLine"]
+[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/SpeedLine" unique_id=1506841352]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Max speed"
-theme_override_font_sizes/font_size = 20
-layout_mode = 2
-custom_minimum_size = Vector2(170, 0)
 
-[node name="SpeedBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/SpeedLine"]
+[node name="SpeedBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/SpeedLine" unique_id=214823790]
 unique_name_in_owner = true
-max_value = 100
-show_percentage = false
+custom_minimum_size = Vector2(220, 24)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4")
-layout_mode = 2
-custom_minimum_size = Vector2(220, 24)
+show_percentage = false
 
-[node name="SpeedValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/SpeedLine"]
+[node name="SpeedValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/SpeedLine" unique_id=879916311]
 unique_name_in_owner = true
-text = ""
-theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
-layout_mode = 2
 custom_minimum_size = Vector2(120, 0)
-
-[node name="AccelLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats"]
-theme_override_constants/separation = 12
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
 
-[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/AccelLine"]
+[node name="AccelLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats" unique_id=1707666653]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/AccelLine" unique_id=993865387]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Acceleration"
-theme_override_font_sizes/font_size = 20
-layout_mode = 2
-custom_minimum_size = Vector2(170, 0)
 
-[node name="AccelBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/AccelLine"]
+[node name="AccelBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/AccelLine" unique_id=1175683658]
 unique_name_in_owner = true
-max_value = 100
-show_percentage = false
+custom_minimum_size = Vector2(220, 24)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4")
-layout_mode = 2
-custom_minimum_size = Vector2(220, 24)
+show_percentage = false
 
-[node name="AccelValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/AccelLine"]
+[node name="AccelValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/AccelLine" unique_id=1031388143]
 unique_name_in_owner = true
-text = ""
-theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
-layout_mode = 2
 custom_minimum_size = Vector2(120, 0)
-
-[node name="HandlingLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats"]
-theme_override_constants/separation = 12
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
 
-[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HandlingLine"]
+[node name="HandlingLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats" unique_id=1790985082]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HandlingLine" unique_id=818615137]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Handling"
-theme_override_font_sizes/font_size = 20
-layout_mode = 2
-custom_minimum_size = Vector2(170, 0)
 
-[node name="HandlingBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/HandlingLine"]
+[node name="HandlingBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/HandlingLine" unique_id=1956069988]
 unique_name_in_owner = true
-max_value = 100
-show_percentage = false
+custom_minimum_size = Vector2(220, 24)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4")
-layout_mode = 2
-custom_minimum_size = Vector2(220, 24)
+show_percentage = false
 
-[node name="HandlingValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HandlingLine"]
+[node name="HandlingValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HandlingLine" unique_id=1839888780]
 unique_name_in_owner = true
-text = ""
-theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
-layout_mode = 2
 custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
 
-[node name="HullLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats"]
+[node name="HullLine" type="HBoxContainer" parent="ShipPanel/Panel/Box/Row/Stats" unique_id=936438756]
+layout_mode = 2
 theme_override_constants/separation = 12
-layout_mode = 2
 
-[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HullLine"]
-text = "Hull"
-theme_override_font_sizes/font_size = 20
-layout_mode = 2
+[node name="Name" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HullLine" unique_id=1409486451]
 custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Hull"
 
-[node name="HullBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/HullLine"]
+[node name="HullBar" type="ProgressBar" parent="ShipPanel/Panel/Box/Row/Stats/HullLine" unique_id=1848443117]
 unique_name_in_owner = true
-max_value = 100
-show_percentage = false
+custom_minimum_size = Vector2(220, 24)
+layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4")
-layout_mode = 2
-custom_minimum_size = Vector2(220, 24)
+show_percentage = false
 
-[node name="HullValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HullLine"]
+[node name="HullValue" type="Label" parent="ShipPanel/Panel/Box/Row/Stats/HullLine" unique_id=602591593]
 unique_name_in_owner = true
-text = ""
-theme_override_font_sizes/font_size = 20
-theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
-layout_mode = 2
 custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 20
 
-[node name="Arrows" type="HBoxContainer" parent="ShipPanel/Panel/Box"]
-alignment = 1
+[node name="Arrows" type="HBoxContainer" parent="ShipPanel/Panel/Box" unique_id=1187312547]
+layout_mode = 2
 theme_override_constants/separation = 20
-layout_mode = 2
+alignment = 1
 
-[node name="PrevButton" type="Button" parent="ShipPanel/Panel/Box/Arrows"]
+[node name="PrevButton" type="Button" parent="ShipPanel/Panel/Box/Arrows" unique_id=1198965324]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 66)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_11")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_12")
+theme_override_styles/hover = SubResource("StyleBoxTexture_11")
 text = "< PREV"
-theme_override_styles/normal = SubResource("StyleBoxTexture_11")
-theme_override_styles/hover = SubResource("StyleBoxTexture_11")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_12")
-layout_mode = 2
 
-[node name="NextButton" type="Button" parent="ShipPanel/Panel/Box/Arrows"]
+[node name="NextButton" type="Button" parent="ShipPanel/Panel/Box/Arrows" unique_id=302849389]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 66)
-text = "NEXT >"
-theme_override_styles/normal = SubResource("StyleBoxTexture_11")
-theme_override_styles/hover = SubResource("StyleBoxTexture_11")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_12")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_11")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_12")
+theme_override_styles/hover = SubResource("StyleBoxTexture_11")
+text = "NEXT >"
 
-[node name="SelectButton" type="Button" parent="ShipPanel/Panel/Box"]
+[node name="SelectButton" type="Button" parent="ShipPanel/Panel/Box" unique_id=904815659]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 76)
-text = "SELECT"
-theme_override_styles/normal = SubResource("StyleBoxTexture_5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5")
+text = "SELECT"
 
-[node name="LevelPanel" type="CenterContainer" parent="."]
+[node name="LevelPanel" type="CenterContainer" parent="." unique_id=1091467036]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1
-anchor_bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-visible = false
 
-[node name="Panel" type="PanelContainer" parent="LevelPanel"]
+[node name="Panel" type="PanelContainer" parent="LevelPanel" unique_id=1393155199]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
-layout_mode = 2
 
-[node name="Box" type="VBoxContainer" parent="LevelPanel/Panel"]
-alignment = 1
+[node name="Box" type="VBoxContainer" parent="LevelPanel/Panel" unique_id=249121226]
+layout_mode = 2
 theme_override_constants/separation = 16
-layout_mode = 2
+alignment = 1
 
-[node name="Title" type="Label" parent="LevelPanel/Panel/Box"]
-horizontal_alignment = 1
-text = "SELECT LEVEL"
-theme_override_font_sizes/font_size = 44
+[node name="Title" type="Label" parent="LevelPanel/Panel/Box" unique_id=502432036]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.95, 1, 1)
-layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "SELECT LEVEL"
+horizontal_alignment = 1
 
-[node name="Level1Button" type="Button" parent="LevelPanel/Panel/Box"]
+[node name="Level1Button" type="Button" parent="LevelPanel/Panel/Box" unique_id=1213494518]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(640, 76)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7")
 text = "Level 1"
-theme_override_styles/normal = SubResource("StyleBoxTexture_7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
-layout_mode = 2
 
-[node name="Level1Desc" type="Label" parent="LevelPanel/Panel/Box"]
+[node name="Level1Desc" type="Label" parent="LevelPanel/Panel/Box" unique_id=1967721649]
 unique_name_in_owner = true
-autowrap_mode = 3
-text = ""
-theme_override_font_sizes/font_size = 18
-layout_mode = 2
 custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+autowrap_mode = 3
 
-[node name="Level2Button" type="Button" parent="LevelPanel/Panel/Box"]
+[node name="Level2Button" type="Button" parent="LevelPanel/Panel/Box" unique_id=1902342150]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(640, 76)
-text = "Level 2"
+layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_8")
-layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_7")
+text = "Level 2"
 
-[node name="Level2Desc" type="Label" parent="LevelPanel/Panel/Box"]
+[node name="Level2Desc" type="Label" parent="LevelPanel/Panel/Box" unique_id=2062388005]
 unique_name_in_owner = true
-autowrap_mode = 3
-text = ""
-theme_override_font_sizes/font_size = 18
-layout_mode = 2
 custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+autowrap_mode = 3
 
-[node name="BackButton" type="Button" parent="LevelPanel/Panel/Box"]
+[node name="BackButton" type="Button" parent="LevelPanel/Panel/Box" unique_id=1376399510]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(380, 76)
-text = "BACK"
-theme_override_styles/normal = SubResource("StyleBoxTexture_5")
-theme_override_styles/hover = SubResource("StyleBoxTexture_5")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6")
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5")
+text = "BACK"

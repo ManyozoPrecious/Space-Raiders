@@ -1,10 +1,6 @@
 class_name GameVirtualJoystick
 extends Control
-## On-screen joystick for touch steering. `output` is a Vector2 whose axes are
-## in the range -1..1. The Pad and Nub images are child nodes in the scene.
-## Supports multi-touch, so another finger can use the fire button at the same time.
-## (Named GameVirtualJoystick because newer Godot versions have a built-in
-## VirtualJoystick class.)
+ 
 
 ## Emitted when a finger first touches the joystick.
 signal touched
