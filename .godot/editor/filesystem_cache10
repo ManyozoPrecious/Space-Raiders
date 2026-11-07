@@ -259,12 +259,13 @@ marker_gunship.png::CompressedTexture2D::8978253641018566190::1792699906::179274
 ::res://assets/ui/font/::1792749178
 KenneyFuture.ttf::FontFile::4299395216245589085::1792699622::1792749178::1::::<><><>0<>0<>0afbc30675a4bc1bcb26f927c1ad3255<>res://.godot/imported/KenneyFuture.ttf-33379e3d8eaa10884f741cd4c258c602.fontdata::
 License_Kenney_UI_and_Mobile_Controls.txt::TextFile::-1::1792699622::0::1::::<><><>0<>0<><>::
-::res://assets/ui/hud/::1792749179
+::res://assets/ui/hud/::1794079607
 button_circle.png::CompressedTexture2D::7690209825679984860::1792699622::1792749179::1::::<><><>0<>0<>5df8ee0cbcc177dd50fcf92a177988ba<>res://.godot/imported/button_circle.png-3bbf6e9c5a6382ca1955553d4a4dd166.ctex::
 icon_arrow.png::CompressedTexture2D::980972463418845915::1792699622::1792749179::1::::<><><>0<>0<>031489c6dfc7596d4264cb04def75034<>res://.godot/imported/icon_arrow.png-dbbbbb013bed42d5fae77342fd35c761.ctex::
 icon_crosshair.png::CompressedTexture2D::5770477121617527043::1792699622::1792749179::1::::<><><>0<>0<>777f7ec9e66b10bc79f93c463225c13a<>res://.godot/imported/icon_crosshair.png-d52c374ff66c6094cb93205610db855f.ctex::
 icon_fire.png::CompressedTexture2D::5746511456949917592::1792699622::1792749179::1::::<><><>0<>0<>57efffbf12e1cc8f400f6790f2fbc5a9<>res://.godot/imported/icon_fire.png-9086df4ce10f9e0b7d7dcb1b4c735401.ctex::
 icon_hand.png::CompressedTexture2D::7688461830128855532::1792699622::1792749179::1::::<><><>0<>0<>a632b410ee07c081854126b5a1c987ff<>res://.godot/imported/icon_hand.png-af3a7636bc5f0037d12fbf50af53f29b.ctex::
+icon_pedal_brake.png::CompressedTexture2D::6377174357649028667::1794080902::1794079615::1::::<><><>0<>0<>4fe0aa868e2ed071cbb9332020f1bd3c<>res://.godot/imported/icon_pedal_brake.png-cedf001a01af566bfb3d856c2875d356.ctex::
 icon_skull.png::CompressedTexture2D::3206465122305585579::1792699622::1792749179::1::::<><><>0<>0<>6b1e6a54abaa79abcdedcafccfec61b0<>res://.godot/imported/icon_skull.png-0c0fe54b5560d361d2828053975f55d2.ctex::
 icon_steering_wheel.png::CompressedTexture2D::3488152803759176237::1792699622::1792749179::1::::<><><>0<>0<>ec9dbbdc0f356f9596f7a1c47381f0e5<>res://.godot/imported/icon_steering_wheel.png-96bd5c49ef5329bdd88e06c283935f4a.ctex::
 icon_target.png::CompressedTexture2D::8272646491244021137::1792699622::1792749179::1::::<><><>0<>0<>805a350fb1fcf8b7f8ad0d1547542e2a<>res://.godot/imported/icon_target.png-687612b5fa9060e3c63d428e7c001f78.ctex::
@@ -333,9 +334,9 @@ scene_level.gd::GDScript::710034658176317674::1793358478::0::1::::SceneLevel<>Le
 space_level.gd::GDScript::6927737122500044244::1793966051::0::1::::SpaceLevel<>SceneLevel<><>0<>0<><>::
 ::res://scripts/player/::1793208522
 chase_camera.gd::GDScript::4164032328685846259::1792755530::0::1::::ChaseCamera<>Camera3D<><>0<>0<><>::
-player_ship.gd::GDScript::7222517951855079085::1793732182::0::1::::PlayerShip<>CharacterBody3D<><>0<>0<><>::
+player_ship.gd::GDScript::7222517951855079085::1794080902::0::1::::PlayerShip<>CharacterBody3D<><>0<>0<><>::
 ::res://scripts/ui/::1793732043
-hud.gd::GDScript::4770450214858363166::1794080250::0::1::::Hud<>CanvasLayer<><>0<>0<><>::
+hud.gd::GDScript::4770450214858363166::1794080902::0::1::::Hud<>CanvasLayer<><>0<>0<><>::
 main_menu.gd::GDScript::830089820812078889::1793969149::0::1::::<>Control<><>0<>0<><>::
 touch_button.gd::GDScript::8040110282724391159::1793358478::0::1::::TouchButton<>Control<><>0<>0<><>::
 ui_kit.gd::GDScript::5324993185258414295::1792743089::0::1::::UiKit<>RefCounted<><>0<>0<><>::

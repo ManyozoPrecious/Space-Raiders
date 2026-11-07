@@ -23,9 +23,11 @@ const MARKER_COLORS := {
 
 var joystick: GameVirtualJoystick
 var fire_button: TouchButton
+var brake_button: TouchButton
 
 var _markers: Dictionary = {}
 var _last_health := -1
+var _player: PlayerShip
 var _message_tween: Tween
 
 @onready var _health_bar: ProgressBar = %HealthBar
@@ -53,6 +55,10 @@ static func create() -> Hud:
 func _ready() -> void:
 	joystick = %Joystick
 	fire_button = %FireButton
+	# Use a BrakeButton node from the scene if there is one; otherwise create it.
+	brake_button = get_node_or_null("%BrakeButton") as TouchButton
+	if brake_button == null:
+		brake_button = _create_brake_button()
 	# The touch hints disappear as soon as the player touches the control they describe.
 	joystick.touched.connect(_steer_hint.hide)
 	fire_button.pressed.connect(_fire_hint.hide)
@@ -185,7 +191,50 @@ func _resume() -> void:
 	_pause_panel.visible = false
 
 
+## Builds the round brake button to the left of the fire button.
+func _create_brake_button() -> TouchButton:
+	var button := TouchButton.new()
+	button.name = "BrakeButton"
+	button.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	button.offset_left = -500.0
+	button.offset_top = -210.0
+	button.offset_right = -330.0
+	button.offset_bottom = -40.0
+	button.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	button.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	var background := TextureRect.new()
+	background.name = "Background"
+	background.texture = load("res://assets/ui/hud/button_circle.png")
+	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	background.stretch_mode = TextureRect.STRETCH_SCALE
+	background.modulate = Color(1.0, 0.75, 0.2, 0.7)
+	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	button.add_child(background)
+	var icon := TextureRect.new()
+	icon.name = "Icon"
+	icon.texture = load("res://assets/ui/hud/icon_pedal_brake.png")
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	icon.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, 42)
+	button.add_child(icon)
+	var label := UiKit.make_label("BRAKE", 18)
+	label.position = Vector2(0, -28)
+	label.size = Vector2(170, 24)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(label)
+	$UI.add_child(button)
+	return button
+
+
 func _process(delta: float) -> void:
+	# Pass the brake button state to the player ship.
+	if _player == null or not is_instance_valid(_player):
+		_player = get_tree().get_first_node_in_group("player") as PlayerShip
+	if _player != null and brake_button != null:
+		_player.touch_brake = brake_button.is_down
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
 		return

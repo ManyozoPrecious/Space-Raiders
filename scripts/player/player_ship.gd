@@ -12,10 +12,15 @@ const COLLISION_COOLDOWN := 0.6
 const COLLISION_DAMAGE := 12
 const AIM_ASSIST_RANGE := 350.0
 const AIM_ASSIST_COS := 0.97
+## Lowest speed the brake slows the ship to, and how much stronger it is than
+## the engine's acceleration.
+const MIN_BRAKE_SPEED := 6.0
+const BRAKE_FACTOR := 3.0
 
 var stats: ShipStats
 var touch_steer := Vector2.ZERO
 var touch_fire := false
+var touch_brake := false
 var is_dead := false
 var current_speed := 0.0
 
@@ -65,7 +70,11 @@ func _physics_process(delta: float) -> void:
 		steer = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var firing := touch_fire or Input.is_key_pressed(KEY_SPACE)
 
-	current_speed = move_toward(current_speed, stats.max_speed, stats.acceleration * delta)
+	var braking := touch_brake or Input.is_key_pressed(KEY_B)
+	if braking:
+		current_speed = move_toward(current_speed, MIN_BRAKE_SPEED, stats.acceleration * BRAKE_FACTOR * delta)
+	else:
+		current_speed = move_toward(current_speed, stats.max_speed, stats.acceleration * delta)
 	# Joystick right = turn right, joystick up = nose up.
 	rotate_object_local(Vector3.UP, -steer.x * stats.turn_rate * delta)
 	rotate_object_local(Vector3.RIGHT, -steer.y * stats.turn_rate * delta)
