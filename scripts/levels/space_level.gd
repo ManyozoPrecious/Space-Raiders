@@ -1,14 +1,11 @@
 class_name SpaceLevel
 extends SceneLevel
-## Level 1: an asteroid field in deep space (scene: scenes/space_level.tscn).
-## The asteroids, planets, station, lights and spawn points are nodes in the
-## scene; only the random star field is created here.
-
+ 
 var _star_root: Node3D
 
 
 func _init() -> void:
-	kills_required = 6
+	kills_required = 1
 	bounds_radius = 300.0
 	fly_height_range = Vector2(-110.0, 110.0)
 	nav_center = Vector3.ZERO

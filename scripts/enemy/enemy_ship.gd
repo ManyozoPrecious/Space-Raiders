@@ -9,6 +9,8 @@ extends CharacterBody3D
 ## behaviours built on the framework's GSAISteeringBehavior.
 
 signal died(enemy: EnemyShip)
+## Emitted whenever the enemy's health changes (the HUD shows a health bar).
+signal health_changed(current: int, maximum: int)
 
 const SCENES := {
 	"fighter": "res://scenes/enemy_fighter.tscn",
@@ -106,6 +108,7 @@ func _ready() -> void:
 	_health.max_health = config["health"]
 	_health.reset()
 	_health.died.connect(_on_died)
+	_health.health_changed.connect(func(current: int, maximum: int) -> void: health_changed.emit(current, maximum))
 
 	_setup_steering()
 

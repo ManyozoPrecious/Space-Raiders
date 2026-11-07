@@ -1,7 +1,15 @@
 extends Control
-## Main menu with sub menus (scene: scenes/main_menu.tscn): play, select a space
-## ship (rotating 3D preview with speed / acceleration stats) and select a level.
-## All panels and buttons are nodes in the scene; this script wires them up.
+## Main menu with sub menus (scene: scenes/main_menu.tscn).
+## PLAY walks through the game flow: select level -> select ship -> game starts.
+## SELECT SHIP and SELECT LEVEL open the same screens on their own to change a
+## choice and return to the main menu. All panels and buttons are nodes in the
+## scene; this script wires them up.
+##
+## Optional extra buttons (add them in the editor, give them unique names):
+##   ShipBackButton  in ShipPanel/Panel/Box  -> goes back one step
+##   LevelBackButton in LevelPanel/Panel/Box -> goes back to the main menu
+
+var _in_flow := false  # true while PLAY is walking through level -> ship -> game
 
 @onready var _main_panel: Control = %MainPanel
 @onready var _ship_panel: Control = %ShipPanel
@@ -23,13 +31,21 @@ extends Control
 func _ready() -> void:
 	_build_stars()
 	%PlayButton.pressed.connect(_on_play_pressed)
-	%ShipButton.pressed.connect(func() -> void: _show_panel(_ship_panel))
-	%LevelButton.pressed.connect(func() -> void: _show_panel(_level_panel))
+	%ShipButton.pressed.connect(func() -> void: _open_panel_alone(_ship_panel))
+	%LevelButton.pressed.connect(func() -> void: _open_panel_alone(_level_panel))
 	%QuitButton.pressed.connect(func() -> void: get_tree().quit())
 	%PrevButton.pressed.connect(func() -> void: _change_ship(-1))
 	%NextButton.pressed.connect(func() -> void: _change_ship(1))
-	%SelectButton.pressed.connect(_on_back_to_main)
-	%BackButton.pressed.connect(_on_back_to_main)
+	# SelectButton (ship screen) and BackButton (level screen) are the "confirm"
+	# buttons; what they do depends on whether PLAY started the flow.
+	%SelectButton.pressed.connect(_on_ship_confirmed)
+	%BackButton.pressed.connect(_on_level_confirmed)
+	var ship_back := get_node_or_null("%ShipBackButton") as Button
+	if ship_back != null:
+		ship_back.pressed.connect(_on_ship_back)
+	var level_back := get_node_or_null("%LevelBackButton") as Button
+	if level_back != null:
+		level_back.pressed.connect(_on_back_to_main)
 	for i in _level_buttons.size():
 		_level_buttons[i].pressed.connect(func() -> void: _select_level(i))
 		_level_descriptions[i].text = GameState.LEVELS[i]["description"]
@@ -64,12 +80,51 @@ func _show_panel(panel: Control) -> void:
 		p.visible = (p == panel)
 
 
+## PLAY: start the flow with the level selection screen.
 func _on_play_pressed() -> void:
 	AudioManager.play_sfx("ui_confirm")
-	GameState.start_selected_level()
+	_in_flow = true
+	_update_confirm_labels()
+	_show_panel(_level_panel)
+
+
+## SELECT SHIP / SELECT LEVEL from the main menu: change one choice, then go back.
+func _open_panel_alone(panel: Control) -> void:
+	_in_flow = false
+	_update_confirm_labels()
+	_show_panel(panel)
+
+
+func _on_level_confirmed() -> void:
+	if _in_flow:
+		_show_panel(_ship_panel)
+	else:
+		_on_back_to_main()
+
+
+func _on_ship_confirmed() -> void:
+	if _in_flow:
+		AudioManager.play_sfx("ui_confirm")
+		_in_flow = false
+		GameState.start_selected_level()
+	else:
+		_on_back_to_main()
+
+
+func _on_ship_back() -> void:
+	if _in_flow:
+		_show_panel(_level_panel)
+	else:
+		_on_back_to_main()
+
+
+func _update_confirm_labels() -> void:
+	%BackButton.text = "NEXT: SELECT SHIP" if _in_flow else "BACK"
+	%SelectButton.text = "START GAME" if _in_flow else "SELECT"
 
 
 func _on_back_to_main() -> void:
+	_in_flow = false
 	_refresh_summary()
 	_show_panel(_main_panel)
 

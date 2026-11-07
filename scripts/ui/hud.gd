@@ -8,6 +8,8 @@ extends CanvasLayer
 signal restart_requested
 
 const SCENE_PATH := "res://scenes/hud.tscn"
+## Seconds an enemy health bar stays visible after the enemy was last hit.
+const BAR_VISIBLE_TIME := 2.0
 const MARKER_TEXTURES := {
 	"fighter": "res://assets/ui/crosshair/marker_fighter.png",
 	"gunship": "res://assets/ui/crosshair/marker_gunship.png",
@@ -118,7 +120,7 @@ func show_message(text: String, duration := 3.0) -> void:
 ## screen edge when the node is off screen). kind: fighter, gunship or goal.
 func add_marker(node: Node3D, kind: String) -> void:
 	var holder := Control.new()
-	holder.size = Vector2(64, 90)
+	holder.size = Vector2(64, 104)
 	holder.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var icon := TextureRect.new()
 	icon.texture = load(MARKER_TEXTURES[kind])
@@ -132,8 +134,29 @@ func add_marker(node: Node3D, kind: String) -> void:
 	label.size = Vector2(84, 24)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	holder.add_child(label)
+	# Enemies get a small health bar that only shows for a moment after a hit.
+	var bar: ProgressBar = null
+	if node.has_signal("health_changed"):
+		bar = UiKit.make_bar(Color(1.0, 0.3, 0.2), Vector2(72, 10))
+		bar.position = Vector2(-4, 88)
+		bar.size = Vector2(72, 10)
+		bar.visible = false
+		holder.add_child(bar)
+		node.health_changed.connect(_on_enemy_health_changed.bind(node))
 	_marker_layer.add_child(holder)
-	_markers[node] = {"holder": holder, "label": label}
+	_markers[node] = {"holder": holder, "label": label, "bar": bar, "bar_time": 0.0}
+
+
+func _on_enemy_health_changed(current: int, maximum: int, node: Node3D) -> void:
+	if not _markers.has(node):
+		return
+	var data: Dictionary = _markers[node]
+	var bar := data["bar"] as ProgressBar
+	if bar == null:
+		return
+	bar.max_value = maximum
+	bar.value = current
+	data["bar_time"] = BAR_VISIBLE_TIME
 
 
 func show_game_over() -> void:
@@ -162,7 +185,7 @@ func _resume() -> void:
 	_pause_panel.visible = false
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
 		return
@@ -189,6 +212,10 @@ func _process(_delta: float) -> void:
 			var scale_x := (center.x - margin) / maxf(absf(direction.x), 0.001)
 			var scale_y := (center.y - margin) / maxf(absf(direction.y), 0.001)
 			point = center + direction * minf(scale_x, scale_y)
+		var bar_node := data["bar"] as ProgressBar
+		if bar_node != null:
+			data["bar_time"] = maxf(float(data["bar_time"]) - delta, 0.0)
+			bar_node.visible = float(data["bar_time"]) > 0.0 and not off_screen
 		holder.position = point - Vector2(32, 32)
 		(data["label"] as Label).text = "%d m" % int(camera.global_position.distance_to(world_pos))
 

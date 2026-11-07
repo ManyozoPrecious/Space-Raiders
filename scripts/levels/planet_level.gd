@@ -6,7 +6,7 @@ extends SceneLevel
 
 
 func _init() -> void:
-	kills_required = 8
+	kills_required = 1
 	bounds_radius = 300.0
 	fly_height_range = Vector2(25.0, 170.0)
 	nav_center = Vector3(0, 220, 0)
@@ -21,5 +21,5 @@ func _objective_text() -> String:
 
 
 func _setup_level() -> void:
-	# Shadows look good on a PC but are too heavy for most phones.
+	 
 	($Sun as DirectionalLight3D).shadow_enabled = not OS.has_feature("mobile")
